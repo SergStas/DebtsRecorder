@@ -1,12 +1,11 @@
 package com.sergstas.debtsrecorder.feature.debts.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sergstas.debtsrecorder.R
-import com.sergstas.debtsrecorder.data.DebtsDao
-import com.sergstas.debtsrecorder.domain.entity.DebtRecord
+import com.sergstas.debtsrecorder.feature.debts.data.DebtsDao
+import com.sergstas.debtsrecorder.domain.entity.Record
 import com.sergstas.debtsrecorder.feature.debts.adapters.DebtsListAdapter
 import com.sergstas.debtsrecorder.feature.debts.presentation.DebtsListView
 import com.sergstas.debtsrecorder.feature.debts.presentation.DebtsPresenter
@@ -30,7 +29,11 @@ class DebtsListFragment(private val _dao: DebtsDao) : MvpAppCompatFragment(R.lay
         }
     }
 
-    override fun setList(records: List<DebtRecord>) {
+    override fun setList(records: List<Record>) {
         _adapter.submitList(records)
+    }
+
+    override fun displayEmptyListMessage() {
+        debtList_tv_emptyList.text = getString(R.string.debtList_tv_emptyList)
     }
 }

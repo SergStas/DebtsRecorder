@@ -4,12 +4,12 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import com.sergstas.debtsrecorder.R
-import com.sergstas.debtsrecorder.domain.entity.DebtRecord
+import com.sergstas.debtsrecorder.domain.entity.Record
 
 class DebtItemFragment : Fragment(R.layout.fragment_debt_item) {
     companion object {
         private const val RECORD_KEY = "RECORD"
-        fun newInstance(record: DebtRecord) =
+        fun newInstance(record: Record) =
             DebtItemFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable(RECORD_KEY, record)
@@ -17,7 +17,7 @@ class DebtItemFragment : Fragment(R.layout.fragment_debt_item) {
             }
     }
 
-    private var _record: DebtRecord? = null
+    private var _record: Record? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

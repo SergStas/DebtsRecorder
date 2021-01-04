@@ -7,16 +7,16 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.sergstas.debtsrecorder.R
-import com.sergstas.debtsrecorder.domain.entity.DebtRecord
+import com.sergstas.debtsrecorder.domain.entity.Record
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.fragment_debt_item.*
 
-class DebtsListAdapter: ListAdapter<DebtRecord, DebtsListAdapter.ViewHolder>(
-    object : DiffUtil.ItemCallback<DebtRecord>() {
-        override fun areItemsTheSame(oldItem: DebtRecord, newItem: DebtRecord): Boolean =
-            oldItem.date == newItem.date
+class DebtsListAdapter: ListAdapter<Record, DebtsListAdapter.ViewHolder>(
+    object : DiffUtil.ItemCallback<Record>() {
+        override fun areItemsTheSame(oldItem: Record, newItem: Record): Boolean =
+            oldItem == newItem
 
-        override fun areContentsTheSame(oldItem: DebtRecord, newItem: DebtRecord): Boolean =
+        override fun areContentsTheSame(oldItem: Record, newItem: Record): Boolean =
             oldItem == newItem
     }) {
 
@@ -30,7 +30,7 @@ class DebtsListAdapter: ListAdapter<DebtRecord, DebtsListAdapter.ViewHolder>(
         setItemView(getItem(position), holder)
     }
 
-    private fun setItemView(record: DebtRecord, holder: ViewHolder) {
+    private fun setItemView(record: Record, holder: ViewHolder) {
         holder.debtItem_tv.text = record.date
     }
 
