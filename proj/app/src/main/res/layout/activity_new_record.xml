@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".feature.newrecord.ui.NewRecordActivity"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/newRecord_tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/newRecord_tvTitle"
+        style="@style/style_baseContent.title"/>
+
+    <EditText
+        android:id="@+id/newRecord_editSum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/newRecord_editSum"
+        android:inputType="numberDecimal"
+        style="@style/style_baseContent"/>
+
+    <RadioGroup
+        android:id="@+id/newRecord_rg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/style_baseContent">
+
+        <RadioButton
+            android:id="@+id/newRecord_rbFrom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/newRecord_rbFrom"
+            android:checked="true"/>
+
+        <RadioButton
+            android:id="@+id/newRecord_rbTo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/newRecord_rbTo"/>
+
+    </RadioGroup>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/style_baseContent">
+
+        <Spinner
+            android:id="@+id/newRecord_spin"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/newRecord_bNewClient"
+            app:layout_constraintHorizontal_weight="2"
+            android:paddingHorizontal="10dp"/>
+
+        <Button
+            android:id="@+id/newRecord_bNewClient"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/newRecord_spin"
+            app:layout_constraintHorizontal_weight="1"
+            android:text="@string/newRecord_bNewClient"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <EditText
+        android:id="@+id/newRecord_editDestDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/newRecord_editDestDate"
+        style="@style/style_baseContent"/>
+
+    <EditText
+        android:id="@+id/newRecord_editDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/newRecord_editDescription"
+        style="@style/style_baseContent"/>
+
+    <Button
+        android:id="@+id/newRecord_bSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/newRecord_bSubmit"
+        style="@style/style_baseContent"/>
+
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:id="@+id/newRecord_pb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:visibility="invisible"/>
+
+</LinearLayout>
