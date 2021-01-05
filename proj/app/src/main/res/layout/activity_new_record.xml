@@ -16,14 +16,6 @@
         android:text="@string/newRecord_tvTitle"
         style="@style/style_baseContent.title"/>
 
-    <EditText
-        android:id="@+id/newRecord_editSum"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/newRecord_editSum"
-        android:inputType="numberDecimal"
-        style="@style/style_baseContent"/>
-
     <RadioGroup
         android:id="@+id/newRecord_rg"
         android:layout_width="match_parent"
@@ -50,27 +42,56 @@
         android:layout_height="wrap_content"
         style="@style/style_baseContent">
 
-        <Spinner
-            android:id="@+id/newRecord_spin"
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/newRecord_tvClient"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/newRecord_tvClient"
+            style="@style/style_baseContent.plainText"
+            android:layout_marginStart="5dp"/>
+
+        <Spinner
+            android:id="@+id/newRecord_spin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/newRecord_tvClient"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/newRecord_bNewClient"
-            app:layout_constraintHorizontal_weight="2"
-            android:paddingHorizontal="10dp"/>
+            android:layout_marginHorizontal="10dp"/>
 
         <Button
             android:id="@+id/newRecord_bNewClient"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@id/newRecord_spin"
-            app:layout_constraintHorizontal_weight="1"
             android:text="@string/newRecord_bNewClient"/>
 
+        <TextView
+            android:id="@+id/newRecord_tvNoClient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/newRecord_spin"
+            app:layout_constraintEnd_toEndOf="@id/newRecord_spin"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/newRecord_tvNoClients"
+            android:visibility="invisible"
+            style="@style/style_baseContent.plainText"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <EditText
+        android:id="@+id/newRecord_editSum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/newRecord_editSum"
+        android:inputType="numberDecimal"
+        style="@style/style_baseContent"/>
 
     <EditText
         android:id="@+id/newRecord_editDestDate"

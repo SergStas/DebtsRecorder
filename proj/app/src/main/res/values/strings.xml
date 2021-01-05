@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">DebtsRecorder</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="debtList_tv_emptyList">No records made yet</string>
+    <string name="debtList_bAdd">New entry</string>
+    <string name="newRecord_rbFrom">Get money from…</string>
+    <string name="newRecord_rbTo">Return money to…</string>
+    <string name="newRecord_editSum">Sum in rubbles</string>
+    <string name="newRecord_bNewClient">New client</string>
+    <string name="newRecord_editDescription">Description (recommended)</string>
+    <string name="newRecord_bSubmit">Submit</string>
+    <string name="newRecord_tvTitle">New debt entry</string>
+    <string name="newRecord_editDestDate">Debt repayment period/date (optional)</string>
+    <string name="newRecord_spin_hint_empty">No clients found</string>
+    <string name="newRecord_spin_hint_select">Select client</string>
+    <string name="newRecord_tvClient">Client:</string>
+    <string name="newRecord_toast_clientIsNull">Please, specify your client</string>
+    <string name="newRecord_toast_incorrectSum">Incorrect sum format</string>
+    <string name="newRecord_tvNoClients">No clients data found</string>
+    <string name="newRecord_dialog_tvContent">You didn\'t specified description. If you specify it, it will be easier to remember what does this record mean. Continue?</string>
+    <string name="newRecord_dialog_bNo">No</string>
+    <string name="newRecord_dialog_bYes">Yes</string>
+    <string name="newRecord_dialog_title">Alert</string>
+</resources>

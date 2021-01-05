@@ -5,7 +5,6 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Record(
-    val id: Int,
     val sum: Double,
     val clientFirstName: String,
     val clientLastName: String,

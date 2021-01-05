@@ -79,7 +79,6 @@ class DBHolder(private val _context: Context) {
         val client = getClientInfo(cursor.getInt(cursor.getColumnIndex(RECORDS_CLIENT_ID_NAME)))
         with(cursor) {
             return Record(
-                id = getInt(getColumnIndex(RECORDS_ID_NAME)),
                 sum = getDouble(getColumnIndex(RECORDS_SUM_NAME)),
                 clientFirstName = client.firstName,
                 clientLastName = client.lastName,
