@@ -6,10 +6,10 @@ import com.sergstas.debtsrecorder.domain.entity.Record
 
 class NewRecordDaoImpl(private val _db: DBHolder): NewRecordDao {
     override fun getClients(): List<Client> {
-        return emptyList()
+        //_db.removeAllClients()
+        return _db.getClients()
     }
 
-    override fun addNewRecord(record: Record): Boolean {
-        return false
-    }
+    override fun addNewRecord(record: Record): Boolean =
+        _db.addRecord(record)
 }

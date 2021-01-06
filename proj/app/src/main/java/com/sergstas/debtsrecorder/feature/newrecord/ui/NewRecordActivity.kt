@@ -1,5 +1,6 @@
 package com.sergstas.debtsrecorder.feature.newrecord.ui
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -20,6 +21,10 @@ import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
 
 class NewRecordActivity : MvpAppCompatActivity(), NewRecordView {
+    companion object {
+        private const val DIALOG_REQUEST_CODE = 0
+        private const val NEW_CLIENT_REQUEST_CODE = 1
+    }
 
     private val _presenter: NewRecordPresenter by moxyPresenter {
         NewRecordPresenter(this, NewRecordDaoImpl(DBHolder(this)))
@@ -32,14 +37,9 @@ class NewRecordActivity : MvpAppCompatActivity(), NewRecordView {
         setContentView(R.layout.activity_new_record)
     }
 
-    override fun onResume() {
-        super.onResume()
-        _presenter.loadClientsData()
-    }
-
     override fun setListeners() {
         newRecord_bNewClient.setOnClickListener {
-            startActivity(Intent(this, NewClientActivity::class.java))
+            startActivityForResult(Intent(this, NewClientActivity::class.java), NEW_CLIENT_REQUEST_CODE)
         }
 
         newRecord_bSubmit.setOnClickListener {
@@ -55,7 +55,7 @@ class NewRecordActivity : MvpAppCompatActivity(), NewRecordView {
     }
 
     override fun setClientsSpinner(clients: List<Client>) {
-        val labels = clients.map { c -> "${c.lastName} ${c.firstName}" }
+        val labels = clients.map { c -> "${c.firstName} ${c.lastName}" }
         newRecord_spin.adapter =
             ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, labels)
             .apply { setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item) }
@@ -91,15 +91,15 @@ class NewRecordActivity : MvpAppCompatActivity(), NewRecordView {
     override fun showEmptyDescriptionWarning() {
         startActivityForResult(
             Intent(this, EmptyDescriptionDialog::class.java),
-            EmptyDescriptionDialog.REQUEST_CODE
+            DIALOG_REQUEST_CODE
         )
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == EmptyDescriptionDialog.REQUEST_CODE &&
-            data!!.getBooleanExtra(EmptyDescriptionDialog.RESULT_KEY, false))
+        if (requestCode == DIALOG_REQUEST_CODE &&
+            resultCode == Activity.RESULT_OK)
             _presenter.validate(
                 newRecord_editSum.text.toString(),
                 newRecord_rbFrom.isChecked,
@@ -108,10 +108,18 @@ class NewRecordActivity : MvpAppCompatActivity(), NewRecordView {
                 newRecord_editDescription.text.toString(),
                 true
             )
+        else if (requestCode == NEW_CLIENT_REQUEST_CODE &&
+            resultCode == Activity.RESULT_OK)
+            _presenter.processAddingNewClient()
+
     }
 
     override fun close() {
         finish()
+    }
+
+    override fun showClientAddedMessage() {
+        Toast.makeText(this, getString(R.string.newRecord_message_clientAdded), Toast.LENGTH_LONG).show()
     }
 }
 

@@ -26,4 +26,7 @@ interface NewRecordView: MvpView {
 
     @StateStrategyType(AddToEndSingleStrategy::class)
     fun close()
+
+    @StateStrategyType(SkipStrategy::class)
+    fun showClientAddedMessage()
 }

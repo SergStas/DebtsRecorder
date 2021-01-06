@@ -37,13 +37,13 @@ class NewRecordPresenter(private val _context: Context, private val _dao: NewRec
             else if (!ignoreEmptyDescription && description.isNullOrEmpty())
                 viewState.showEmptyDescriptionWarning()
             else {
-                val date = Date(System.currentTimeMillis())
+                val date = Date(System.currentTimeMillis()).toString().split('-')
                 if (_dao.addNewRecord(Record(
                     sum,
-                    client.split(' ')[1],
                     client.split(' ')[0],
+                    client.split(' ')[1],
                     clientPays,
-                    "${date.day}.${date.month}.${date.year}",
+                    "${date[2]}.${date[1]}.${date[0]}",
                     destDate,
                     description
                 )))
@@ -58,12 +58,17 @@ class NewRecordPresenter(private val _context: Context, private val _dao: NewRec
         viewState.showLoading(false)
     }
 
-    fun loadClientsData() {
+    private fun loadClientsData() {
         presenterScope.launch {
             viewState.showLoading(true)
             _clients = _dao.getClients()
             viewState.setClientsSpinner(_clients)
             viewState.showLoading(false)
         }
+    }
+
+    fun processAddingNewClient() {
+        loadClientsData()
+        viewState.showClientAddedMessage()
     }
 }

@@ -31,4 +31,5 @@
     <string name="error_lastNameIsNull">Please, specify last name</string>
     <string name="error_clientExists">Client already exists</string>
     <string name="error_nameContainsSpaces">First name or last name shouldn\'t contain spaces</string>
+    <string name="newRecord_message_clientAdded">Client data added successfully</string>
 </resources>

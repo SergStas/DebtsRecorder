@@ -1,5 +1,6 @@
 package com.sergstas.debtsrecorder.feature.newclient.ui
 
+import android.app.Activity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +16,7 @@ import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
 
 class NewClientActivity : MvpAppCompatActivity(), NewClientView {
+
     private val _presenter: NewClientPresenter by moxyPresenter {
         NewClientPresenter(NewClientDaoImpl(DBHolder(this)))
     }
@@ -22,9 +24,11 @@ class NewClientActivity : MvpAppCompatActivity(), NewClientView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_client)
+        setResult(Activity.RESULT_CANCELED)
     }
 
     override fun close() {
+        setResult(Activity.RESULT_OK)
         finish()
     }
 

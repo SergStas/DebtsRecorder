@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.sergstas.debtsrecorder.feature.debts.ui.DebtsActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() { //TODO: turn off
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
