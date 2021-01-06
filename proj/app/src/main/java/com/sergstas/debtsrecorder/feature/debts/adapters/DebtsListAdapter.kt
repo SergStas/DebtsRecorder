@@ -31,7 +31,7 @@ class DebtsListAdapter: ListAdapter<Record, DebtsListAdapter.ViewHolder>(
     }
 
     private fun setItemView(record: Record, holder: ViewHolder) {
-        holder.debtItem_tv.text = record.date
+        holder.debtItem_tvSum.text = record.date
     }
 
     class ViewHolder(override val containerView: View): RecyclerView.ViewHolder(containerView),

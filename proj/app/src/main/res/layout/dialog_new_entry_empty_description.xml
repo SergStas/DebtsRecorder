@@ -13,7 +13,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:text="@string/newRecord_dialog_tvContent"
-        style="@style/style_baseContent.plainText"/>
+        style="@style/style_BaseContent.PlainText"/>
 
     <Button
         android:id="@+id/newRecord_dialog_bBack"
@@ -24,7 +24,7 @@
         app:layout_constraintTop_toBottomOf="@id/newRecord_dialog_tvContent"
         app:layout_constraintEnd_toStartOf="@id/newRecord_dialog_bSubmit"
         app:layout_constraintHorizontal_weight="1"
-        style="@style/style_baseContent"/>
+        style="@style/style_BaseContent"/>
 
     <Button
         android:id="@+id/newRecord_dialog_bSubmit"
@@ -35,6 +35,6 @@
         app:layout_constraintStart_toEndOf="@id/newRecord_dialog_bBack"
         app:layout_constraintTop_toBottomOf="@id/newRecord_dialog_tvContent"
         app:layout_constraintHorizontal_weight="1"
-        style="@style/style_baseContent"/>
+        style="@style/style_BaseContent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

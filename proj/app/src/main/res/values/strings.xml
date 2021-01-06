@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">DebtsRecorder</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="debtList_tv_emptyList">No records made yet</string>
     <string name="debtList_bAdd">New entry</string>
     <string name="newRecord_rbFrom">Get money from…</string>
@@ -22,4 +21,8 @@
     <string name="newRecord_dialog_bNo">No</string>
     <string name="newRecord_dialog_bYes">Yes</string>
     <string name="newRecord_dialog_title">Alert</string>
+    <string name="debtItem_tvDestDate">Repayment date wasn\'t specified</string>
+    <string name="newClient_title">New client</string>
+    <string name="newClient_editFirstName">First name</string>
+    <string name="newClient_editLastName">Last name</string>
 </resources>

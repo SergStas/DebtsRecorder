@@ -7,20 +7,34 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="style_baseContent">
+    <style name="style_BaseContent">
         <item name="android:layout_marginTop">15dp</item>
         <item name="android:layout_marginBottom">15dp</item>
     </style>
 
-    <style name="style_baseContent.title">
+    <style name="style_BaseContent.Title">
         <item name="android:textColor">@color/colorText</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">28sp</item>
     </style>
 
-    <style name="style_baseContent.plainText">
+    <style name="style_BaseContent.PlainText">
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/colorText</item>
+    </style>
+
+    <style name="style_DebtItem">
+        <item name="android:layout_marginStart">20dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/colorText</item>
+    </style>
+
+    <style name="style_DebtItem.Title">
+        <item name="android:layout_marginStart">0dp</item>
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:textSize">24sp</item>
     </style>
 
 </resources>

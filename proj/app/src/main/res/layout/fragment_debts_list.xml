@@ -55,6 +55,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        style="@style/style_baseContent.title"/>
+        style="@style/style_BaseContent.Title"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

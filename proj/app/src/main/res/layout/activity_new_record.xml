@@ -14,13 +14,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="@string/newRecord_tvTitle"
-        style="@style/style_baseContent.title"/>
+        style="@style/style_BaseContent.Title"/>
 
     <RadioGroup
         android:id="@+id/newRecord_rg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/style_baseContent">
+        style="@style/style_BaseContent">
 
         <RadioButton
             android:id="@+id/newRecord_rbFrom"
@@ -40,7 +40,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/style_baseContent">
+        style="@style/style_BaseContent">
 
         <TextView
             android:id="@+id/newRecord_tvClient"
@@ -50,7 +50,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:text="@string/newRecord_tvClient"
-            style="@style/style_baseContent.plainText"
+            style="@style/style_BaseContent.PlainText"
             android:layout_marginStart="5dp"/>
 
         <Spinner
@@ -81,7 +81,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:text="@string/newRecord_tvNoClients"
             android:visibility="invisible"
-            style="@style/style_baseContent.plainText"/>
+            style="@style/style_BaseContent.PlainText"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -91,21 +91,21 @@
         android:layout_height="wrap_content"
         android:hint="@string/newRecord_editSum"
         android:inputType="numberDecimal"
-        style="@style/style_baseContent"/>
+        style="@style/style_BaseContent"/>
 
     <EditText
         android:id="@+id/newRecord_editDestDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/newRecord_editDestDate"
-        style="@style/style_baseContent"/>
+        style="@style/style_BaseContent"/>
 
     <EditText
         android:id="@+id/newRecord_editDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/newRecord_editDescription"
-        style="@style/style_baseContent"/>
+        style="@style/style_BaseContent"/>
 
     <Button
         android:id="@+id/newRecord_bSubmit"
@@ -113,7 +113,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="@string/newRecord_bSubmit"
-        style="@style/style_baseContent"/>
+        style="@style/style_BaseContent"/>
 
     <androidx.core.widget.ContentLoadingProgressBar
         android:id="@+id/newRecord_pb"
