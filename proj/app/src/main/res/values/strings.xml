@@ -14,8 +14,8 @@
     <string name="newRecord_spin_hint_empty">No clients found</string>
     <string name="newRecord_spin_hint_select">Select client</string>
     <string name="newRecord_tvClient">Client:</string>
-    <string name="newRecord_toast_clientIsNull">Please, specify your client</string>
-    <string name="newRecord_toast_incorrectSum">Incorrect sum format</string>
+    <string name="error_clientIsNull">Please, specify your client</string>
+    <string name="error_incorrectSum">Please, input sum of payment</string>
     <string name="newRecord_tvNoClients">No clients data found</string>
     <string name="newRecord_dialog_tvContent">You didn\'t specified description. If you specify it, it will be easier to remember what does this record mean. Continue?</string>
     <string name="newRecord_dialog_bNo">No</string>
@@ -25,4 +25,10 @@
     <string name="newClient_title">New client</string>
     <string name="newClient_editFirstName">First name</string>
     <string name="newClient_editLastName">Last name</string>
+    <string name="newClient_bSubmit">Submit</string>
+    <string name="error_unknownError">Unknown error</string>
+    <string name="error_firstNameIsNull">Please, specify first name</string>
+    <string name="error_lastNameIsNull">Please, specify last name</string>
+    <string name="error_clientExists">Client already exists</string>
+    <string name="error_nameContainsSpaces">First name or last name shouldn\'t contain spaces</string>
 </resources>

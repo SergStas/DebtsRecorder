@@ -33,6 +33,7 @@
         app:layout_constraintStart_toStartOf="@id/newClient_editLastName"
         app:layout_constraintEnd_toEndOf="@id/newClient_editLastName"
         app:layout_constraintTop_toBottomOf="@id/newClient_editLastName"
+        android:text="@string/newClient_bSubmit"
         android:layout_marginTop="20dp"/>
 
     <ProgressBar

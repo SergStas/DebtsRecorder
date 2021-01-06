@@ -5,8 +5,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".feature.debts.ui.DebtItemFragment"
-    android:padding="10dp"
-    android:background="">
+    android:padding="10dp">
 
     <TextView
         android:id="@+id/debtItem_tvDate"

@@ -17,12 +17,7 @@ class NewRecordPresenter(private val _context: Context, private val _dao: NewRec
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         viewState.setListeners()
-        presenterScope.launch {
-            viewState.showLoading(true)
-            _clients = _dao.getClients()
-            viewState.setClientsSpinner(_clients)
-            viewState.showLoading(false)
-        }
+        loadClientsData()
     }
 
     fun validate(
@@ -34,6 +29,7 @@ class NewRecordPresenter(private val _context: Context, private val _dao: NewRec
         ignoreEmptyDescription: Boolean
     ) {
         viewState.showLoading(true)
+
         try {
             val sum = sumStr.toDouble()
             if (client == null)
@@ -42,7 +38,7 @@ class NewRecordPresenter(private val _context: Context, private val _dao: NewRec
                 viewState.showEmptyDescriptionWarning()
             else {
                 val date = Date(System.currentTimeMillis())
-                _dao.addNewRecord(Record(
+                if (_dao.addNewRecord(Record(
                     sum,
                     client.split(' ')[1],
                     client.split(' ')[0],
@@ -50,14 +46,24 @@ class NewRecordPresenter(private val _context: Context, private val _dao: NewRec
                     "${date.day}.${date.month}.${date.year}",
                     destDate,
                     description
-                ))
-                viewState.close()
-                return
+                )))
+                    viewState.close()
+                else
+                    viewState.showValidationError(ValidationError.UNKNOWN)
             }
         }
         catch (e: Exception) {
             viewState.showValidationError(ValidationError.INCORRECT_SUM)
         }
         viewState.showLoading(false)
+    }
+
+    fun loadClientsData() {
+        presenterScope.launch {
+            viewState.showLoading(true)
+            _clients = _dao.getClients()
+            viewState.setClientsSpinner(_clients)
+            viewState.showLoading(false)
+        }
     }
 }

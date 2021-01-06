@@ -16,17 +16,23 @@ class NewClientPresenter(private val _dao: NewClientDaoImpl): MvpPresenter<NewCl
     fun validate(fn: String, ln: String) {
         presenterScope.launch {
             viewState.showLoading(true)
+
             val client = Client(fn, ln)
-            if (fn.isEmpty())
-                viewState.showValidationError(ValidationError.FIRST_NAME_IS_NULL)
-            else if (ln.isEmpty())
-                viewState.showValidationError(ValidationError.LAST_NAME_IS_NULL)
-            else if (_dao.doesClientExist(client))
-                viewState.showValidationError(ValidationError.CLIENT_ALREADY_EXISTS)
-            else {
-                _dao.addClient(client)
-                viewState.close()
+            val error = when {
+                fn.isEmpty() -> ValidationError.FIRST_NAME_IS_NULL
+                ln.isEmpty() -> ValidationError.LAST_NAME_IS_NULL
+                fn.contains(' ') || ln.contains(' ') -> ValidationError.NAME_CONTAINS_SPACES
+                _dao.doesClientExist(client) -> ValidationError.CLIENT_ALREADY_EXISTS
+                else -> null
             }
+
+            if (error != null)
+                viewState.showValidationError(error)
+            else if (_dao.addClient(client))
+                viewState.close()
+            else
+                viewState.showValidationError(ValidationError.UNKNOWN)
+
             viewState.showLoading(false)
         }
     }

@@ -68,7 +68,6 @@ class DBHolder(private val _context: Context) {
             .apply { moveToNext() }
         with(cursor) {
             return Client(
-                id = getInt(getColumnIndex(CLIENTS_ID_NAME)),
                 firstName = getString(getColumnIndex(CLIENTS_FIRST_NAME_NAME)),
                 lastName = getString(getColumnIndex(CLIENTS_LAST_NAME_NAME))
             )

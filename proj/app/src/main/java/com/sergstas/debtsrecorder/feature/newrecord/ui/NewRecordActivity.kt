@@ -1,6 +1,5 @@
 package com.sergstas.debtsrecorder.feature.newrecord.ui
 
-import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -11,12 +10,12 @@ import androidx.core.view.isVisible
 import com.sergstas.debtsrecorder.R
 import com.sergstas.debtsrecorder.data.db.DBHolder
 import com.sergstas.debtsrecorder.domain.entity.Client
+import com.sergstas.debtsrecorder.feature.newclient.ui.NewClientActivity
 import com.sergstas.debtsrecorder.feature.newrecord.data.NewRecordDaoImpl
 import com.sergstas.debtsrecorder.feature.newrecord.enums.ValidationError
 import com.sergstas.debtsrecorder.feature.newrecord.presentation.NewRecordPresenter
 import com.sergstas.debtsrecorder.feature.newrecord.presentation.NewRecordView
 import kotlinx.android.synthetic.main.activity_new_record.*
-import kotlinx.android.synthetic.main.dialog_new_entry_empty_description.*
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
 
@@ -33,9 +32,14 @@ class NewRecordActivity : MvpAppCompatActivity(), NewRecordView {
         setContentView(R.layout.activity_new_record)
     }
 
+    override fun onResume() {
+        super.onResume()
+        _presenter.loadClientsData()
+    }
+
     override fun setListeners() {
         newRecord_bNewClient.setOnClickListener {
-
+            startActivity(Intent(this, NewClientActivity::class.java))
         }
 
         newRecord_bSubmit.setOnClickListener {
@@ -76,8 +80,9 @@ class NewRecordActivity : MvpAppCompatActivity(), NewRecordView {
 
     override fun showValidationError(error: ValidationError) {
         val text = when (error) {
-            ValidationError.CLIENT_IS_NULL -> getString(R.string.newRecord_toast_clientIsNull)
-            ValidationError.INCORRECT_SUM -> getString(R.string.newRecord_toast_incorrectSum)
+            ValidationError.CLIENT_IS_NULL -> getString(R.string.error_clientIsNull)
+            ValidationError.INCORRECT_SUM -> getString(R.string.error_incorrectSum)
+            else -> getString(R.string.error_unknownError)
         }
 
         Toast.makeText(this, text, Toast.LENGTH_LONG).show()
