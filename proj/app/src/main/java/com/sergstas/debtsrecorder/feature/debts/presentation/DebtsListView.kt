@@ -12,7 +12,7 @@ interface DebtsListView: MvpView {
     fun setList(records: List<Record>)
 
     @StateStrategyType(AddToEndSingleStrategy::class)
-    fun displayEmptyListMessage()
+    fun displayEmptyListMessage(b: Boolean)
 
     @StateStrategyType(SkipStrategy::class)
     fun showLoading(b: Boolean)

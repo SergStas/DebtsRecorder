@@ -55,6 +55,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/debtList_tv_emptyList"
         style="@style/style_BaseContent.Title"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

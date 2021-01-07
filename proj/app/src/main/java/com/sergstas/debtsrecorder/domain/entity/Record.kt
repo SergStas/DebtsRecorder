@@ -12,4 +12,7 @@ data class Record(
     val date: String,
     val destDate: String?,
     val description: String?
-): Parcelable
+): Parcelable {
+    val clientString: String
+    get() = "$clientFirstName $clientLastName"
+}

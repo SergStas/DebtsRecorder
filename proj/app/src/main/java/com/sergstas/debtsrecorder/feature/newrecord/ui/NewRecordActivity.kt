@@ -55,7 +55,7 @@ class NewRecordActivity : MvpAppCompatActivity(), NewRecordView {
     }
 
     override fun setClientsSpinner(clients: List<Client>) {
-        val labels = clients.map { c -> "${c.firstName} ${c.lastName}" }
+        val labels = clients.map { c -> c.fullNameString }
         newRecord_spin.adapter =
             ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, labels)
             .apply { setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item) }

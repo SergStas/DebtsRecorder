@@ -4,4 +4,5 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="colorText">#444</color>
+    <color name="colorDebtItemBG">#C7C7C7</color>
 </resources>

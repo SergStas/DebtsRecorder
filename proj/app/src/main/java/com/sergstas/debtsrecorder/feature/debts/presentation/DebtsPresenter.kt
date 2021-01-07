@@ -19,9 +19,11 @@ class DebtsPresenter(private val _dao: DebtsDao): MvpPresenter<DebtsListView>() 
             viewState.showLoading(true)
             _recordsList = _dao.getAll()
             if (_recordsList.isEmpty())
-                viewState.displayEmptyListMessage()
-            else
-                viewState.setList(_recordsList)
+                viewState.displayEmptyListMessage(true)
+            else {
+                viewState.displayEmptyListMessage(false)
+                viewState.setList(_recordsList.reversed())
+            }
             viewState.showLoading(false)
         }
     }

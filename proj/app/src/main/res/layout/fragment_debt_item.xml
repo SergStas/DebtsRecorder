@@ -5,7 +5,9 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".feature.debts.ui.DebtItemFragment"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:background="@color/colorDebtItemBG"
+    android:layout_margin="10dp">
 
     <TextView
         android:id="@+id/debtItem_tvDate"
@@ -39,9 +41,17 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/debtItem_tvClient"
-        android:text="@string/debtItem_tvDestDate"
         style="@style/style_DebtItem"
         android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/debtItem_tvDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/debtItem_tvDestDate"
+        app:layout_constraintStart_toStartOf="parent"
+        style="@style/style_DebtItem.Description"/>
+
 
 
 

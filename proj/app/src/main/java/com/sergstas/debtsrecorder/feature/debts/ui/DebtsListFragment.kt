@@ -49,8 +49,8 @@ class DebtsListFragment(private val _dao: DebtsDao) : MvpAppCompatFragment(R.lay
         _adapter.submitList(records)
     }
 
-    override fun displayEmptyListMessage() {
-        debtList_tv_emptyList.text = getString(R.string.debtList_tv_emptyList)
+    override fun displayEmptyListMessage(b: Boolean) {
+        debtList_tv_emptyList.isVisible = b
     }
 
     override fun showLoading(b: Boolean) {

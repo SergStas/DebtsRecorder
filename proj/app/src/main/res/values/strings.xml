@@ -32,4 +32,10 @@
     <string name="error_clientExists">Client already exists</string>
     <string name="error_nameContainsSpaces">First name or last name shouldn\'t contain spaces</string>
     <string name="newRecord_message_clientAdded">Client data added successfully</string>
+    <string name="debtItem_PAY">Pay to</string>
+    <string name="debtItem_GET">Get from</string>
+    <string name="debtItem_tvSum_ph">%s rub - %s</string>
+    <string name="debtItem_tvDescription">Description wasn\'t specified</string>
+    <string name="debtItem_tvDestDate_ph">Repayment: %s</string>
+    <string name="debtItem_tvDescription_ph">Description: %s</string>
 </resources>
