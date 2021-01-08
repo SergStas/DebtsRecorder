@@ -2,7 +2,9 @@ package com.sergstas.debtsrecorder.feature.debts.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
+import android.widget.PopupMenu
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sergstas.debtsrecorder.R
@@ -28,7 +30,7 @@ class DebtsListFragment(private val _dao: DebtsDao) : MvpAppCompatFragment(R.lay
 
         with(debtList_rv) {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            adapter = DebtsListAdapter().also { _adapter = it }
+            adapter = DebtsListAdapter{v -> _presenter.proceedOnClick(v)}.also { _adapter = it }
         }
 
         setView()
@@ -55,5 +57,26 @@ class DebtsListFragment(private val _dao: DebtsDao) : MvpAppCompatFragment(R.lay
 
     override fun showLoading(b: Boolean) {
         debtList_pb.isVisible = b
+    }
+
+    override fun showPopup(item: View) {
+        val menu = PopupMenu(context, item).apply { inflate(R.menu.popup_debt_item) }
+        menu.setOnMenuItemClickListener { v: MenuItem? ->
+            when(v?.itemId) {
+                R.id.debtItem_popup_edit -> _presenter.editItem(item)
+                R.id.debtItem_popup_remove -> _presenter.removeItem(item)
+                else -> return@setOnMenuItemClickListener false
+            }
+
+            true
+        }
+    }
+
+    override fun showRemoveConfirmation(): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun runEditActivity(item: View) {
+        TODO("Not yet implemented")
     }
 }

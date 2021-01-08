@@ -38,4 +38,6 @@
     <string name="debtItem_tvDescription">Description wasn\'t specified</string>
     <string name="debtItem_tvDestDate_ph">Repayment: %s</string>
     <string name="debtItem_tvDescription_ph">Description: %s</string>
+    <string name="debtItem_popup_edit">Edit</string>
+    <string name="debtItem_popup_remove">Remove</string>
 </resources>

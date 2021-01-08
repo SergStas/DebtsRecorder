@@ -1,5 +1,6 @@
 package com.sergstas.debtsrecorder.feature.debts.presentation
 
+import android.view.View
 import com.sergstas.debtsrecorder.domain.entity.Record
 import moxy.MvpView
 import moxy.viewstate.strategy.AddToEndSingleStrategy
@@ -16,4 +17,13 @@ interface DebtsListView: MvpView {
 
     @StateStrategyType(SkipStrategy::class)
     fun showLoading(b: Boolean)
+
+    @StateStrategyType(SkipStrategy::class)
+    fun showPopup(item: View)
+
+    @StateStrategyType(SkipStrategy::class)
+    fun showRemoveConfirmation(): Boolean
+
+    @StateStrategyType(SkipStrategy::class)
+    fun runEditActivity(item: View)
 }

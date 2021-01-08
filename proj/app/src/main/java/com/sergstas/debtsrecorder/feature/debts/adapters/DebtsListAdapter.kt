@@ -12,7 +12,9 @@ import com.sergstas.debtsrecorder.domain.entity.Record
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.fragment_debt_item.*
 
-class DebtsListAdapter: ListAdapter<Record, DebtsListAdapter.ViewHolder>(
+class DebtsListAdapter(
+    private val onClick: (View) -> Unit
+): ListAdapter<Record, DebtsListAdapter.ViewHolder>(
     object : DiffUtil.ItemCallback<Record>() {
         override fun areItemsTheSame(oldItem: Record, newItem: Record): Boolean =
             oldItem == newItem
@@ -38,6 +40,8 @@ class DebtsListAdapter: ListAdapter<Record, DebtsListAdapter.ViewHolder>(
             getString(if (record.doesClientPay) R.string.debtItem_GET else R.string.debtItem_PAY))
             holder.debtItem_tvClient.text = record.clientString
             holder.debtItem_tvDate.text = record.date
+
+            holder.containerView.setOnClickListener { onClick }
 
             if (!record.destDate.isNullOrEmpty())
                 holder.debtItem_tvDestDate.text =
