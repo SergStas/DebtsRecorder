@@ -41,7 +41,9 @@ class DebtsListAdapter(
             holder.debtItem_tvClient.text = record.clientString
             holder.debtItem_tvDate.text = record.date
 
-            holder.containerView.setOnClickListener { onClick }
+            holder.containerView.setOnClickListener {
+                onClick(holder.containerView)
+            }
 
             if (!record.destDate.isNullOrEmpty())
                 holder.debtItem_tvDestDate.text =

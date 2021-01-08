@@ -11,17 +11,27 @@
         android:theme="@style/AppTheme">
 
         <activity
+            android:label="@string/dialogRemove_title"
+            android:name=".feature.debts.ui.ConfirmationRemoveActivity"
             android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+
+        <activity
             android:name=".feature.newclient.ui.NewClientActivity"
-            android:theme="@style/Theme.AppCompat.Light.Dialog"
-            android:label="@string/newClient_title"/>
+            android:label="@string/newClient_title"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
 
-        <activity android:name=".feature.newrecord.ui.NewRecordActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name=".feature.debts.ui.DebtsActivity"
+        <activity
+            android:name=".feature.newrecord.ui.NewRecordActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".feature.debts.ui.DebtsActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,8 +42,8 @@
 
         <activity
             android:name=".feature.newrecord.ui.EmptyDescriptionDialog"
-            android:screenOrientation="portrait"
             android:label="@string/newRecord_dialog_title"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.Dialog" />
 
     </application>

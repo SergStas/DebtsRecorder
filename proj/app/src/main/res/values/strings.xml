@@ -40,4 +40,10 @@
     <string name="debtItem_tvDescription_ph">Description: %s</string>
     <string name="debtItem_popup_edit">Edit</string>
     <string name="debtItem_popup_remove">Remove</string>
+    <string name="dialogRemove_tvContent">Are you sure you want to delete this entry?</string>
+    <string name="dialogRemove_bNo">No</string>
+    <string name="dialogRemove_bYes">Yes</string>
+    <string name="dialogRemove_title">Remove entry</string>
+    <string name="dlMessage_removeFail">Removing failed</string>
+    <string name="dlMessage_removeSuccess">Entry removed successfully</string>
 </resources>

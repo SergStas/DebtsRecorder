@@ -61,6 +61,14 @@ class DBHolder(_context: Context) {
 
         private const val CLEAR_CLIENTS_QUERY =
             "delete from $CLIENTS_TABLE_NAME"
+
+        private const val FIND_RECORD_ID_QUERY =
+            "select $RECORDS_ID_NAME from $RECORDS_TABLE_NAME where " +
+                "$RECORDS_SUM_NAME = %s and $RECORDS_CLIENT_ID_NAME = %s and $RECORDS_CLIENT_PAYS_NAME = %s " +
+                "and $RECORDS_DATE_NAME = '%s' and $RECORDS_DEST_DATE_NAME %s and $RECORDS_DESCRIPTION_NAME %s"
+
+        private const val REMOVE_RECORD_BY_ID_QUERY =
+            "delete from $RECORDS_TABLE_NAME where $RECORDS_ID_NAME = %s"
     }
 
     private val _recordsHelper = OpenHelper(_context, RECORDS_TABLE_NAME, CREATE_DEBTS_QUERY)
@@ -145,6 +153,16 @@ class DBHolder(_context: Context) {
             false
         }
 
+    fun removeRecord(record: Record): Boolean =
+        try {
+            val id = findRecordsId(record)
+            _recordsHelper.writableDatabase.execSQL(String.format(REMOVE_RECORD_BY_ID_QUERY, id))
+            id != -1
+        }
+        catch (e: Exception) {
+            false
+        }
+
     private fun getClientInfo(id: Int): Client {
         val cursor = _clientsHelper.readableDatabase
             .rawQuery(String.format(FIND_CLIENT_BY_ID_QUERY, id), null)
@@ -160,7 +178,7 @@ class DBHolder(_context: Context) {
     private fun getRecord(cursor: Cursor): Record {
         val client = getClientInfo(cursor.getInt(cursor.getColumnIndex(RECORDS_CLIENT_ID_NAME)))
         with(cursor) {
-            return Record(
+            var e = Record(
                 sum = getDouble(getColumnIndex(RECORDS_SUM_NAME)),
                 clientFirstName = client.firstName,
                 clientLastName = client.lastName,
@@ -169,6 +187,26 @@ class DBHolder(_context: Context) {
                 destDate = getString(getColumnIndex(RECORDS_DEST_DATE_NAME)),
                 description = getString(getColumnIndex(RECORDS_DESCRIPTION_NAME))
             )
+            return e
         }
     }
+
+    private fun findRecordsId(record: Record): Int =
+        try {
+            getAllDebtsRecords()
+            val clientId = getClientsId(Client(record.clientFirstName, record.clientLastName))
+            val description = if (record.description.isNullOrEmpty()) "is null" else "= '${record.description}'"
+            val destDate = if (record.destDate.isNullOrEmpty()) "is null" else "= '${record.destDate}'"
+            val clientPays = if (record.doesClientPay) 1 else 0
+            val query = String.format(
+                FIND_RECORD_ID_QUERY,
+                record.sum, clientId!!, clientPays, record.date, destDate, description)
+            val cursor = _recordsHelper.readableDatabase.rawQuery(query, null)
+            with(cursor.apply { moveToNext() }) {
+                getInt(getColumnIndex(RECORDS_ID_NAME))
+            }
+        }
+        catch (e: Exception) {
+            -1
+        }
 }

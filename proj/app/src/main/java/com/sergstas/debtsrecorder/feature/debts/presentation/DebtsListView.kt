@@ -2,6 +2,7 @@ package com.sergstas.debtsrecorder.feature.debts.presentation
 
 import android.view.View
 import com.sergstas.debtsrecorder.domain.entity.Record
+import com.sergstas.debtsrecorder.feature.debts.enums.DebtsListMessage
 import moxy.MvpView
 import moxy.viewstate.strategy.AddToEndSingleStrategy
 import moxy.viewstate.strategy.AddToEndStrategy
@@ -22,8 +23,11 @@ interface DebtsListView: MvpView {
     fun showPopup(item: View)
 
     @StateStrategyType(SkipStrategy::class)
-    fun showRemoveConfirmation(): Boolean
+    fun showRemoveConfirmation()
 
     @StateStrategyType(SkipStrategy::class)
     fun runEditActivity(item: View)
+
+    @StateStrategyType(SkipStrategy::class)
+    fun showToast(message: DebtsListMessage)
 }

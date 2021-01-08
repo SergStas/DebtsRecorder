@@ -3,13 +3,15 @@ package com.sergstas.debtsrecorder.feature.debts.presentation
 import android.view.View
 import com.sergstas.debtsrecorder.domain.entity.Record
 import com.sergstas.debtsrecorder.feature.debts.data.DebtsDao
-import kotlinx.android.synthetic.main.fragment_debt_item.view.*
+import com.sergstas.debtsrecorder.feature.debts.enums.DebtsListMessage
 import kotlinx.coroutines.launch
 import moxy.MvpPresenter
 import moxy.presenterScope
 
 class DebtsPresenter(private val _dao: DebtsDao): MvpPresenter<DebtsListView>() {
     private var _recordsList = emptyList<Record>()
+
+    private var _itemToRemove: Record? = null
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
@@ -20,12 +22,8 @@ class DebtsPresenter(private val _dao: DebtsDao): MvpPresenter<DebtsListView>() 
         presenterScope.launch {
             viewState.showLoading(true)
             _recordsList = _dao.getAll()
-            if (_recordsList.isEmpty())
-                viewState.displayEmptyListMessage(true)
-            else {
-                viewState.displayEmptyListMessage(false)
-                viewState.setList(_recordsList.reversed())
-            }
+            viewState.setList(_recordsList.reversed())
+            viewState.displayEmptyListMessage(_recordsList.isEmpty())
             viewState.showLoading(false)
         }
     }
@@ -34,24 +32,25 @@ class DebtsPresenter(private val _dao: DebtsDao): MvpPresenter<DebtsListView>() 
         viewState.showPopup(item)
     }
 
-    fun removeItem(item: View) {
-        if (!viewState.showRemoveConfirmation()) return
-        presenterScope.launch {
-            viewState.showLoading(true)
-            _dao.removeItem(
-                item.debtItem_tvSum.text.split(" - ")[0],
-                item.debtItem_tvSum.text.split(" - ")[1],
-                item.debtItem_tvClient.text.toString(),
-                item.debtItem_tvDate.text.toString(),
-                item.debtItem_tvDestDate.text.toString(),
-                item.debtItem_tvDescription.text.toString()
-            )
-            setList()
-            viewState.showLoading(false)
-        }
+    fun requireItemRemove(item: Record) {
+        _itemToRemove = item
+        viewState.showRemoveConfirmation()
     }
 
     fun editItem(item: View) {
         viewState.runEditActivity(item)
+    }
+
+    fun confirmRemoving() {
+        presenterScope.launch {
+            viewState.showLoading(true)
+            viewState.showToast(
+                if (_dao.removeItem(_itemToRemove!!))
+                    DebtsListMessage.RemovedSuccessfully
+                else
+                    DebtsListMessage.RemovingFailed)
+            setList()
+            viewState.showLoading(false)
+        }
     }
 }
