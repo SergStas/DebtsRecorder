@@ -1,5 +1,5 @@
 package com.sergstas.debtsrecorder.feature.debts.enums
 
 enum class DebtsListMessage {
-    RemovedSuccessfully, RemovingFailed
+    REMOVED_SUCCESSFULLY, REMOVING_FAILED, EDITED_SUCCESSFULLY
 }

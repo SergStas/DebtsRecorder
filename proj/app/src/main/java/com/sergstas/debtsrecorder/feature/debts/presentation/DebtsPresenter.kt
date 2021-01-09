@@ -46,11 +46,16 @@ class DebtsPresenter(private val _dao: DebtsDao): MvpPresenter<DebtsListView>() 
             viewState.showLoading(true)
             viewState.showToast(
                 if (_dao.removeItem(_itemToRemove!!))
-                    DebtsListMessage.RemovedSuccessfully
+                    DebtsListMessage.REMOVED_SUCCESSFULLY
                 else
-                    DebtsListMessage.RemovingFailed)
-            setList()
+                    DebtsListMessage.REMOVING_FAILED)
             viewState.showLoading(false)
         }
+        setList()
+    }
+
+    fun processEditingResult() {
+        viewState.showToast(DebtsListMessage.EDITED_SUCCESSFULLY)
+        setList()
     }
 }

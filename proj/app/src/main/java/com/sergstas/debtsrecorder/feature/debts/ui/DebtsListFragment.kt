@@ -16,8 +16,8 @@ import com.sergstas.debtsrecorder.feature.debts.adapters.DebtsListAdapter
 import com.sergstas.debtsrecorder.feature.debts.enums.DebtsListMessage
 import com.sergstas.debtsrecorder.feature.debts.presentation.DebtsListView
 import com.sergstas.debtsrecorder.feature.debts.presentation.DebtsPresenter
+import com.sergstas.debtsrecorder.feature.edit.ui.EditRecordActivity
 import com.sergstas.debtsrecorder.feature.newrecord.ui.NewRecordActivity
-import kotlinx.android.synthetic.main.fragment_debt_item.*
 import kotlinx.android.synthetic.main.fragment_debt_item.view.*
 import kotlinx.android.synthetic.main.fragment_debts_list.*
 import moxy.MvpAppCompatFragment
@@ -27,6 +27,7 @@ import moxy.ktx.moxyPresenter
 class DebtsListFragment(private val _dao: DebtsDao) : MvpAppCompatFragment(R.layout.fragment_debts_list), DebtsListView {
     companion object {
         private const val REMOVE_CONFIRMATION_REQUEST_CODE = 0
+        private const val EDIT_ACTIVITY_REQUEST_CODE = 1
     }
 
     private val _presenter: DebtsPresenter by moxyPresenter{
@@ -72,27 +73,7 @@ class DebtsListFragment(private val _dao: DebtsDao) : MvpAppCompatFragment(R.lay
         menu.setOnMenuItemClickListener { v: MenuItem? ->
             when(v?.itemId) {
                 R.id.debtItem_popup_edit -> _presenter.editItem(item)
-                R.id.debtItem_popup_remove -> _presenter.requireItemRemove(
-                    Record(
-                        sum = item.debtItem_tvSum.text.toString().split(" rub")[0].toDouble(),
-                        clientFirstName = item.debtItem_tvClient.text.toString().split(' ')[0],
-                        clientLastName = item.debtItem_tvClient.text.toString().split(' ')[1],
-                        doesClientPay = item.debtItem_tvSum.text.toString().split(" - ")[1] == getString(R.string.debtItem_GET),
-                        date = item.debtItem_tvDate.text.toString(),
-
-                        destDate =
-                            if (item.debtItem_tvDestDate.text.toString().isEmpty())
-                                ""
-                            else
-                                item.debtItem_tvDestDate.text.toString().split(": ")[1],
-
-                        description =
-                            if (item.debtItem_tvDescription.text.toString().isEmpty())
-                                ""
-                            else
-                                item.debtItem_tvDescription.text.toString().split(": ")[1]
-                    )
-                )
+                R.id.debtItem_popup_remove -> _presenter.requireItemRemove(extractData(item))
                 else -> return@setOnMenuItemClickListener false
             }
 
@@ -107,13 +88,14 @@ class DebtsListFragment(private val _dao: DebtsDao) : MvpAppCompatFragment(R.lay
     }
 
     override fun runEditActivity(item: View) {
-
+        startActivityForResult(EditRecordActivity.getIntent(context!!, extractData(item)), EDIT_ACTIVITY_REQUEST_CODE)
     }
 
     override fun showToast(message: DebtsListMessage) {
         val text = when(message) {
-            DebtsListMessage.RemovedSuccessfully -> getString(R.string.dlMessage_removeSuccess)
-            DebtsListMessage.RemovingFailed -> getString(R.string.dlMessage_removeFail)
+            DebtsListMessage.REMOVED_SUCCESSFULLY -> getString(R.string.dlMessage_removeSuccess)
+            DebtsListMessage.REMOVING_FAILED -> getString(R.string.dlMessage_removeFail)
+            DebtsListMessage.EDITED_SUCCESSFULLY -> getString(R.string.dlMessage_editSuccess)
             else -> getString(R.string.error_unknownError)
         }
         Toast.makeText(context, text, Toast.LENGTH_LONG).show()
@@ -125,6 +107,33 @@ class DebtsListFragment(private val _dao: DebtsDao) : MvpAppCompatFragment(R.lay
             REMOVE_CONFIRMATION_REQUEST_CODE ->
                 if (resultCode == RESULT_OK)
                     _presenter.confirmRemoving()
+            EDIT_ACTIVITY_REQUEST_CODE ->
+                if (resultCode == RESULT_OK)
+                    _presenter.processEditingResult()
         }
+    }
+
+    private fun extractData(item: View): Record {
+        val e = Record(
+            sum = item.debtItem_tvSum.text.toString().split(" rub")[0].toDouble(),
+            clientFirstName = item.debtItem_tvClient.text.toString().split(' ')[0],
+            clientLastName = item.debtItem_tvClient.text.toString().split(' ')[1],
+            doesClientPay = item.debtItem_tvSum.text.toString()
+                .split(" - ")[1] == getString(R.string.debtItem_GET),
+            date = item.debtItem_tvDate.text.toString(),
+
+            destDate =
+            if (item.debtItem_tvDestDate.text.toString().isEmpty())
+                ""
+            else
+                item.debtItem_tvDestDate.text.toString().split(": ")[1],
+
+            description =
+            if (item.debtItem_tvDescription.text.toString().isEmpty())
+                ""
+            else
+                item.debtItem_tvDescription.text.toString().split(": ")[1]
+        )
+        return e //TODO: debug
     }
 }

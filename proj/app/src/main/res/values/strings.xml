@@ -46,4 +46,6 @@
     <string name="dialogRemove_title">Remove entry</string>
     <string name="dlMessage_removeFail">Removing failed</string>
     <string name="dlMessage_removeSuccess">Entry removed successfully</string>
+    <string name="newRecord_tvTitle_edit">Edit record</string>
+    <string name="dlMessage_editSuccess">Entry modified successfully</string>
 </resources>

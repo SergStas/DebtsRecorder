@@ -69,6 +69,15 @@ class DBHolder(_context: Context) {
 
         private const val REMOVE_RECORD_BY_ID_QUERY =
             "delete from $RECORDS_TABLE_NAME where $RECORDS_ID_NAME = %s"
+
+        private const val UPDATE_RECORD_QUERY =
+            "update $RECORDS_TABLE_NAME set " +
+                "$RECORDS_CLIENT_ID_NAME = %s, " +
+                "$RECORDS_SUM_NAME = %s, " +
+                "$RECORDS_CLIENT_PAYS_NAME = %s, " +
+                "$RECORDS_DEST_DATE_NAME = %s, " +
+                "$RECORDS_DESCRIPTION_NAME = %s " +
+            "where $RECORDS_ID_NAME = %s"
     }
 
     private val _recordsHelper = OpenHelper(_context, RECORDS_TABLE_NAME, CREATE_DEBTS_QUERY)
@@ -193,7 +202,6 @@ class DBHolder(_context: Context) {
 
     private fun findRecordsId(record: Record): Int =
         try {
-            getAllDebtsRecords()
             val clientId = getClientsId(Client(record.clientFirstName, record.clientLastName))
             val description = if (record.description.isNullOrEmpty()) "is null" else "= '${record.description}'"
             val destDate = if (record.destDate.isNullOrEmpty()) "is null" else "= '${record.destDate}'"
@@ -208,5 +216,27 @@ class DBHolder(_context: Context) {
         }
         catch (e: Exception) {
             -1
+        }
+
+    fun updateRecord(old: Record, new: Record): Boolean  =
+        try {
+            val clientId = getClientsId(Client(new.clientFirstName, new.clientLastName))
+            val description = if (new.description.isNullOrEmpty()) "null" else "'${new.description}'"
+            val destDate = if (new.destDate.isNullOrEmpty()) "null" else "'${new.destDate}'"
+            val clientPays = if (new.doesClientPay) 1 else 0
+            val oldId = findRecordsId(old)
+            val query = String.format(UPDATE_RECORD_QUERY,
+                clientId,
+                new.sum,
+                clientPays,
+                destDate,
+                description,
+                oldId
+            )
+            _recordsHelper.writableDatabase.execSQL(query)
+            oldId != -1
+        }
+        catch (e: Exception) {
+            false
         }
 }

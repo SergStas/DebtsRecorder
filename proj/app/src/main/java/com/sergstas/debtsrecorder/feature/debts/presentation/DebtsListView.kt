@@ -4,10 +4,7 @@ import android.view.View
 import com.sergstas.debtsrecorder.domain.entity.Record
 import com.sergstas.debtsrecorder.feature.debts.enums.DebtsListMessage
 import moxy.MvpView
-import moxy.viewstate.strategy.AddToEndSingleStrategy
-import moxy.viewstate.strategy.AddToEndStrategy
-import moxy.viewstate.strategy.SkipStrategy
-import moxy.viewstate.strategy.StateStrategyType
+import moxy.viewstate.strategy.*
 
 interface DebtsListView: MvpView {
     @StateStrategyType(AddToEndSingleStrategy::class)
@@ -28,6 +25,6 @@ interface DebtsListView: MvpView {
     @StateStrategyType(SkipStrategy::class)
     fun runEditActivity(item: View)
 
-    @StateStrategyType(SkipStrategy::class)
+    @StateStrategyType(OneExecutionStateStrategy::class)
     fun showToast(message: DebtsListMessage)
 }
