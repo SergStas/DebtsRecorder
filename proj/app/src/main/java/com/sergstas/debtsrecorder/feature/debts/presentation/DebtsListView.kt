@@ -23,7 +23,7 @@ interface DebtsListView: MvpView {
     fun showRemoveConfirmation()
 
     @StateStrategyType(SkipStrategy::class)
-    fun runEditActivity(item: View)
+    fun runEditActivity(item: Record)
 
     @StateStrategyType(OneExecutionStateStrategy::class)
     fun showToast(message: DebtsListMessage)

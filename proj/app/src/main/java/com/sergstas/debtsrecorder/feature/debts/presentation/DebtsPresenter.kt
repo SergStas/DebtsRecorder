@@ -37,7 +37,7 @@ class DebtsPresenter(private val _dao: DebtsDao): MvpPresenter<DebtsListView>() 
         viewState.showRemoveConfirmation()
     }
 
-    fun editItem(item: View) {
+    fun editItem(item: Record) {
         viewState.runEditActivity(item)
     }
 

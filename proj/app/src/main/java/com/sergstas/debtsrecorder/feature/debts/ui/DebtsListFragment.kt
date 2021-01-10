@@ -72,7 +72,7 @@ class DebtsListFragment(private val _dao: DebtsDao) : MvpAppCompatFragment(R.lay
         val menu = PopupMenu(context, item).apply { inflate(R.menu.popup_debt_item) }
         menu.setOnMenuItemClickListener { v: MenuItem? ->
             when(v?.itemId) {
-                R.id.debtItem_popup_edit -> _presenter.editItem(item)
+                R.id.debtItem_popup_edit -> _presenter.editItem(extractData(item))
                 R.id.debtItem_popup_remove -> _presenter.requireItemRemove(extractData(item))
                 else -> return@setOnMenuItemClickListener false
             }
@@ -87,8 +87,8 @@ class DebtsListFragment(private val _dao: DebtsDao) : MvpAppCompatFragment(R.lay
             REMOVE_CONFIRMATION_REQUEST_CODE)
     }
 
-    override fun runEditActivity(item: View) {
-        startActivityForResult(EditRecordActivity.getIntent(context!!, extractData(item)), EDIT_ACTIVITY_REQUEST_CODE)
+    override fun runEditActivity(item: Record) {
+        startActivityForResult(EditRecordActivity.getIntent(context!!, item), EDIT_ACTIVITY_REQUEST_CODE)
     }
 
     override fun showToast(message: DebtsListMessage) {
@@ -113,8 +113,8 @@ class DebtsListFragment(private val _dao: DebtsDao) : MvpAppCompatFragment(R.lay
         }
     }
 
-    private fun extractData(item: View): Record {
-        val e = Record(
+    private fun extractData(item: View): Record =
+        Record(
             sum = item.debtItem_tvSum.text.toString().split(" rub")[0].toDouble(),
             clientFirstName = item.debtItem_tvClient.text.toString().split(' ')[0],
             clientLastName = item.debtItem_tvClient.text.toString().split(' ')[1],
@@ -134,6 +134,4 @@ class DebtsListFragment(private val _dao: DebtsDao) : MvpAppCompatFragment(R.lay
             else
                 item.debtItem_tvDescription.text.toString().split(": ")[1]
         )
-        return e //TODO: debug
-    }
 }
