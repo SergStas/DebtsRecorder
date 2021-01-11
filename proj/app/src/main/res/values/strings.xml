@@ -48,4 +48,7 @@
     <string name="dlMessage_removeSuccess">Entry removed successfully</string>
     <string name="newRecord_tvTitle_edit">Edit record</string>
     <string name="dlMessage_editSuccess">Entry modified successfully</string>
+    <string name="main_bNewRecord">Add new debt entry</string>
+    <string name="main_bClients">Show debtors info</string>
+    <string name="main_bAllRecords">Show all debt entries info</string>
 </resources>

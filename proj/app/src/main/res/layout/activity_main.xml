@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".feature.main.ui.MainActivity"
+    android:padding="40dp">
+
+    <TextView
+        android:id="@+id/main_tvMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="60dp"
+        style="@style/style_BaseContent.Title"/>
+
+    <Button
+        android:id="@+id/main_bNewRecord"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_tvMessage"
+        android:layout_marginTop="40dp"
+        android:text="@string/main_bNewRecord"
+        style="@style/style_BaseContent.PlainText"
+        android:padding="20dp"/>
+
+    <Button
+        android:id="@+id/main_bClients"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_bNewRecord"
+        android:layout_marginTop="40dp"
+        android:text="@string/main_bClients"
+        style="@style/style_BaseContent.PlainText"
+        android:padding="20dp"/>
+
+    <Button
+        android:id="@+id/main_bAllRecords"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_bClients"
+        android:layout_marginTop="40dp"
+        android:text="@string/main_bAllRecords"
+        style="@style/style_BaseContent.PlainText"
+        android:padding="20dp"/>
+
+    <ProgressBar
+        android:id="@+id/main_pb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_bAllRecords"
+        android:layout_marginTop="40dp"
+        android:visibility="invisible"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
