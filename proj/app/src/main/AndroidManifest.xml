@@ -10,8 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".feature.edit.ui.EditRecordActivity"
+            android:name=".feature.clients.ui.ClientsActivity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".feature.edit.ui.EditRecordActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".feature.debts.ui.ConfirmationRemoveActivity"
             android:label="@string/dialogRemove_title"
