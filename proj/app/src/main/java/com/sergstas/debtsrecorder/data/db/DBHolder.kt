@@ -3,6 +3,7 @@ package com.sergstas.debtsrecorder.data.db
 import android.content.Context
 import android.database.Cursor
 import com.sergstas.debtsrecorder.domain.entity.Client
+import com.sergstas.debtsrecorder.domain.entity.ClientsDebtState
 import com.sergstas.debtsrecorder.domain.entity.Record
 import java.lang.Exception
 
@@ -238,5 +239,13 @@ class DBHolder(_context: Context) {
         }
         catch (e: Exception) {
             false
+        }
+
+    fun getClientsStates(): List<ClientsDebtState> =
+        try {
+            emptyList() //TODO: finish
+        }
+        catch (e: Exception) {
+            emptyList()
         }
 }

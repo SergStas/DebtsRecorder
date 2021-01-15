@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import com.sergstas.debtsrecorder.R
 import com.sergstas.debtsrecorder.data.db.DBHolder
+import com.sergstas.debtsrecorder.feature.clients.ui.ClientsActivity
 import com.sergstas.debtsrecorder.feature.debts.ui.DebtsActivity
 import com.sergstas.debtsrecorder.feature.main.data.MainDaoImpl
 import com.sergstas.debtsrecorder.feature.main.presntation.MainPresenter
@@ -40,7 +41,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         }
 
         main_bClients.setOnClickListener {
-            Toast.makeText(this, "Woops, not implemented :c", Toast.LENGTH_LONG).show()
+            startActivity(Intent(this, ClientsActivity::class.java))
         }
     }
 

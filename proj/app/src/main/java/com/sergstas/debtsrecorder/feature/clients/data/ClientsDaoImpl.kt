@@ -6,5 +6,5 @@ import com.sergstas.debtsrecorder.domain.entity.ClientsDebtState
 class ClientsDaoImpl(private val _db: DBHolder):
     ClientsDao {
     override fun getClientsState(): List<ClientsDebtState> =
-        emptyList()
+        _db.getClientsStates()
 }

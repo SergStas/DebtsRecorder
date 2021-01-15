@@ -42,4 +42,15 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="style_clientItem" parent="style_BaseContent.PlainText">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="style_DebtItem.RecordsCount">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorText</item>
+
+    </style>
+
 </resources>

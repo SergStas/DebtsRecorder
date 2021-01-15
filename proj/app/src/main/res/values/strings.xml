@@ -51,4 +51,10 @@
     <string name="main_bNewRecord">Add new debt entry</string>
     <string name="main_bClients">Show debtors info</string>
     <string name="main_bAllRecords">Show all debt entries info</string>
+    <string name="clientItem_tvSum_ph_pay">%s rub to pay</string>
+    <string name="clientItem_tvSum_ph_no">%s rub</string>
+    <string name="clientItem_tvSum_ph_get">%s rub to get</string>
+    <string name="clients_tvEmptyList">No clients yet</string>
+    <string name="clientItem_tvRecordsCount_ph">%s entries</string>
+    <string name="clientItem_tvRecordsCount_ph_empty">%s  entries - cleanup recommended</string>
 </resources>
