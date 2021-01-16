@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/clientItem_popup">
+        <item
+            android:id="@+id/clientItem_popup_records"
+            android:title="@string/clientItem_popup_records"/>
+        <item
+            android:id="@+id/clientItem_popup_rename"
+            android:title="@string/clientItem_popup_rename"/>
+        <item
+            android:id="@+id/clientItem_popup_cleanup"
+            android:title="@string/clientItem_popup_cleanup"/>
+        <item
+            android:id="@+id/clientItem_popup_remove"
+            android:title="@string/clientItem_popup_remove"/>
+    </group>
+</menu>

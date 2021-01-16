@@ -24,4 +24,16 @@ class ClientsPresenter(private val _dao: ClientsDao): MvpPresenter<ClientsView>(
             viewState.showLoading(false)
         }
     }
+
+    fun renameClient(name: String) {
+        TODO("Not yet implemented")
+    }
+
+    fun cleanupClientsHistory(name: String) {
+        TODO("Not yet implemented")
+    }
+
+    fun removeClient(name: String) {
+        TODO("Not yet implemented")
+    }
 }

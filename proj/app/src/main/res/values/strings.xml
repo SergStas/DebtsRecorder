@@ -57,4 +57,9 @@
     <string name="clients_tvEmptyList">No clients yet</string>
     <string name="clientItem_tvRecordsCount_ph">%s entries</string>
     <string name="clientItem_tvRecordsCount_ph_empty">%s  entries - cleanup recommended</string>
+    <string name="clientItem_tvRecordsCount_ph_one">%s entry</string>
+    <string name="clientItem_popup_rename">Rename</string>
+    <string name="clientItem_popup_cleanup">Cleanup debts history</string>
+    <string name="clientItem_popup_remove">Remove</string>
+    <string name="clientItem_popup_records">Show all debts</string>
 </resources>

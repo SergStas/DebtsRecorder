@@ -241,11 +241,12 @@ class DBHolder(_context: Context) {
             false
         }
 
-    fun getClientsStates(): List<ClientsDebtState> =
+    fun getClientsInfo(): Map<Client, List<Record>> =
         try {
-            emptyList() //TODO: finish
+            getAllDebtsRecords().groupBy { r -> r.clientString }
+                .mapKeys { e -> Client(e.key.split(" ")[0], e.key.split(" ")[1]) }
         }
         catch (e: Exception) {
-            emptyList()
+            emptyMap()
         }
 }

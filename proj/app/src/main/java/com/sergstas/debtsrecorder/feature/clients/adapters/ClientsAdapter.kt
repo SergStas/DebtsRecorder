@@ -13,7 +13,8 @@ import kotlinx.android.synthetic.main.fragment_clients_item.*
 import kotlin.math.abs
 import kotlin.math.roundToInt
 
-class ClientsAdapter: ListAdapter<ClientsDebtState, ClientsAdapter.ViewHolder>(
+class ClientsAdapter(private val onClick: (View) -> Unit):
+    ListAdapter<ClientsDebtState, ClientsAdapter.ViewHolder>(
     object : DiffUtil.ItemCallback<ClientsDebtState>() {
         override fun areItemsTheSame(oldItem: ClientsDebtState, newItem: ClientsDebtState): Boolean =
             oldItem == newItem
@@ -34,6 +35,7 @@ class ClientsAdapter: ListAdapter<ClientsDebtState, ClientsAdapter.ViewHolder>(
 
     private fun setItemView(client: ClientsDebtState, holder: ViewHolder) {
         with(holder) {
+            containerView.setOnClickListener { onClick(containerView) }
             clientItem_tvName.text = client.client.fullNameString
             clientItem_tvSum.text = String.format(containerView.context.getString(
                 when {
@@ -46,6 +48,8 @@ class ClientsAdapter: ListAdapter<ClientsDebtState, ClientsAdapter.ViewHolder>(
             clientItem_tvRecordsCount.text = String.format(containerView.context.getString(
                 if (client.debtsCount != 0 && abs(client.totalSum) < 0.01)
                     R.string.clientItem_tvRecordsCount_ph_empty
+                else if (client.debtsCount == 1)
+                    R.string.clientItem_tvRecordsCount_ph_one
                 else
                     R.string.clientItem_tvRecordsCount_ph
             ), client.debtsCount)
