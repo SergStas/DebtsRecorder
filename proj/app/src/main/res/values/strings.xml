@@ -62,4 +62,8 @@
     <string name="clientItem_popup_cleanup">Cleanup debts history</string>
     <string name="clientItem_popup_remove">Remove</string>
     <string name="clientItem_popup_records">Show all debts</string>
+    <string name="clRec_tvHeader_ph">%s\'s records:</string>
+    <string name="clRec_tvEmptyList">No records yet</string>
+    <string name="debtItem_PAY_noClient">Pay</string>
+    <string name="debtItem_GET_noClient">Get</string>
 </resources>

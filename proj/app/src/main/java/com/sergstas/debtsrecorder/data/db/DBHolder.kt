@@ -249,4 +249,7 @@ class DBHolder(_context: Context) {
         catch (e: Exception) {
             emptyMap()
         }
+
+    fun getClientsRecords(client: Client): List<Record> =
+        getAllDebtsRecords().filter { r -> r.clientString == client.fullNameString }
 }

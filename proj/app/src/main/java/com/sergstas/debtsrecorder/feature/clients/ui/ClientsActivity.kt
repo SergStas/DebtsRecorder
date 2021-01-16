@@ -3,16 +3,17 @@ package com.sergstas.debtsrecorder.feature.clients.ui
 import android.os.Bundle
 import android.view.View
 import android.widget.PopupMenu
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sergstas.debtsrecorder.R
 import com.sergstas.debtsrecorder.data.db.DBHolder
+import com.sergstas.debtsrecorder.domain.entity.Client
 import com.sergstas.debtsrecorder.domain.entity.ClientsDebtState
 import com.sergstas.debtsrecorder.feature.clients.adapters.ClientsAdapter
 import com.sergstas.debtsrecorder.feature.clients.data.ClientsDaoImpl
 import com.sergstas.debtsrecorder.feature.clients.presentation.ClientsPresenter
 import com.sergstas.debtsrecorder.feature.clients.presentation.ClientsView
+import com.sergstas.debtsrecorder.feature.clientrecords.ui.ClientRecordsActivity
 import kotlinx.android.synthetic.main.activity_clients.*
 import kotlinx.android.synthetic.main.fragment_clients_item.view.*
 import moxy.MvpAppCompatActivity
@@ -53,11 +54,10 @@ class ClientsActivity : MvpAppCompatActivity(), ClientsView {
     private fun showPopup(v: View) {
         val menu = PopupMenu(this, v)
             .apply { inflate(R.menu.popup_client_item) }
-        val toast = Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT)
 
         menu.setOnMenuItemClickListener { item ->
             when(item.itemId) {
-                R.id.clientItem_popup_records -> toast.show()
+                R.id.clientItem_popup_records -> goToClientRecords(v.clientItem_tvName.text.toString())
                 R.id.clientItem_popup_rename -> _presenter.renameClient(v.clientItem_tvName.text.toString())
                 R.id.clientItem_popup_cleanup -> _presenter.cleanupClientsHistory(v.clientItem_tvName.text.toString())
                 R.id.clientItem_popup_remove -> _presenter.removeClient(v.clientItem_tvName.text.toString())
@@ -67,5 +67,12 @@ class ClientsActivity : MvpAppCompatActivity(), ClientsView {
         }
 
         menu.show()
+    }
+
+    private fun goToClientRecords(name: String) {
+        startActivity(ClientRecordsActivity.getIntent(this, Client(
+            name.split(" ")[0],
+            name.split(" ")[1]
+        )))
     }
 }

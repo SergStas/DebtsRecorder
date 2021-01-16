@@ -10,8 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".feature.clients.ui.ClientsActivity"
+            android:name=".feature.clientrecords.ui.ClientRecordsActivity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".feature.clients.ui.ClientsActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".feature.edit.ui.EditRecordActivity"
             android:screenOrientation="portrait" />
