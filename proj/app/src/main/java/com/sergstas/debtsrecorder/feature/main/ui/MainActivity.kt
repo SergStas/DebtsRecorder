@@ -34,7 +34,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     override fun setListeners() {
         main_bNewRecord.setOnClickListener {
             startActivity(Intent(this, NewRecordActivity::class.java))
-        }
+        } //TODO: success message
 
         main_bAllRecords.setOnClickListener {
             startActivity(Intent(this, DebtsActivity::class.java))
@@ -50,6 +50,6 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     }
 
     override fun setDebtorsInfo(to: Int, from: Int) {
-
+        //TODO
     }
 }

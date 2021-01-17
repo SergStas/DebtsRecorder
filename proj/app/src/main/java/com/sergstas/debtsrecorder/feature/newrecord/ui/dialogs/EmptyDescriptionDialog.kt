@@ -1,4 +1,4 @@
-package com.sergstas.debtsrecorder.feature.newrecord.ui
+package com.sergstas.debtsrecorder.feature.newrecord.ui.dialogs
 
 import android.app.Activity
 import android.content.Intent

@@ -4,37 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    tools:context=".feature.debts.ui.ConfirmationRemoveActivity"
+    tools:context=".feature.clients.ui.dialogs.ClientsConfirmDialogActivity"
     android:padding="20dp">
 
     <TextView
-        android:id="@+id/dialogRemove_tvContent"
+        android:id="@+id/confirmCI_tvContent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        style="@style/style_BaseContent.PlainText"
-        android:text="@string/dialogRemove_tvContent"/>
+        style="@style/style_BaseContent"/>
 
     <Button
-        android:id="@+id/dialogRemove_bNo"
+        android:id="@+id/confirmCI_bNo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/dialogRemove_bYes"
-        app:layout_constraintTop_toBottomOf="@id/dialogRemove_tvContent"
-        android:text="@string/dialogRemove_bNo"
-        android:layout_marginTop="10dp"/>
+        app:layout_constraintEnd_toStartOf="@id/confirmCI_bYes"
+        app:layout_constraintTop_toBottomOf="@id/confirmCI_tvContent"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="15dp"
+        android:text="@string/confirmCI_bNo"/>
 
     <Button
-        android:id="@+id/dialogRemove_bYes"
+        android:id="@+id/confirmCI_bYes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/dialogRemove_bNo"
+        app:layout_constraintStart_toEndOf="@id/confirmCI_bNo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/dialogRemove_tvContent"
-        android:text="@string/dialogRemove_bYes"
-        android:layout_marginTop="10dp"/>
-
+        app:layout_constraintTop_toBottomOf="@id/confirmCI_tvContent"
+        android:layout_marginTop="20dp"
+        android:text="@string/confirmCI_bYes"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

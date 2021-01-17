@@ -18,7 +18,7 @@ import com.sergstas.debtsrecorder.feature.edit.presentation.EditRecordPresenter
 import com.sergstas.debtsrecorder.feature.edit.presentation.EditRecordView
 import com.sergstas.debtsrecorder.feature.newclient.ui.NewClientActivity
 import com.sergstas.debtsrecorder.feature.newrecord.enums.ValidationError
-import com.sergstas.debtsrecorder.feature.newrecord.ui.EmptyDescriptionDialog
+import com.sergstas.debtsrecorder.feature.newrecord.ui.dialogs.EmptyDescriptionDialog
 import kotlinx.android.synthetic.main.activity_new_record.*
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter

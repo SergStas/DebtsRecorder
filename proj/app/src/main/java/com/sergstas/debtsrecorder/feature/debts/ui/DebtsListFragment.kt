@@ -16,6 +16,7 @@ import com.sergstas.debtsrecorder.feature.debts.adapters.DebtsListAdapter
 import com.sergstas.debtsrecorder.feature.debts.enums.DebtsListMessage
 import com.sergstas.debtsrecorder.feature.debts.presentation.DebtsListView
 import com.sergstas.debtsrecorder.feature.debts.presentation.DebtsPresenter
+import com.sergstas.debtsrecorder.feature.debts.ui.dialogs.DebtsConfirmDialogActivity
 import com.sergstas.debtsrecorder.feature.edit.ui.EditRecordActivity
 import com.sergstas.debtsrecorder.feature.newrecord.ui.NewRecordActivity
 import kotlinx.android.synthetic.main.fragment_debt_item.view.*
@@ -83,7 +84,7 @@ class DebtsListFragment(private val _dao: DebtsDao) : MvpAppCompatFragment(R.lay
     }
 
     override fun showRemoveConfirmation() {
-        startActivityForResult(Intent(context, ConfirmationRemoveActivity::class.java),
+        startActivityForResult(Intent(context, DebtsConfirmDialogActivity::class.java),
             REMOVE_CONFIRMATION_REQUEST_CODE)
     }
 

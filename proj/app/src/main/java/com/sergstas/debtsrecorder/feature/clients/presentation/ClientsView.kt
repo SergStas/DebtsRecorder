@@ -1,6 +1,7 @@
 package com.sergstas.debtsrecorder.feature.clients.presentation
 
 import com.sergstas.debtsrecorder.domain.entity.ClientsDebtState
+import com.sergstas.debtsrecorder.feature.clients.enums.ClientsMessage
 import moxy.MvpView
 import moxy.viewstate.strategy.AddToEndSingleStrategy
 import moxy.viewstate.strategy.SkipStrategy
@@ -15,4 +16,7 @@ interface ClientsView: MvpView {
 
     @StateStrategyType(AddToEndSingleStrategy::class)
     fun showEmptyListMessage(b: Boolean)
+
+    @StateStrategyType(SkipStrategy::class)
+    fun showMessage(message: ClientsMessage)
 }

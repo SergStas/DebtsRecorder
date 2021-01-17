@@ -3,7 +3,6 @@ package com.sergstas.debtsrecorder.data.db
 import android.content.Context
 import android.database.Cursor
 import com.sergstas.debtsrecorder.domain.entity.Client
-import com.sergstas.debtsrecorder.domain.entity.ClientsDebtState
 import com.sergstas.debtsrecorder.domain.entity.Record
 import java.lang.Exception
 
@@ -79,6 +78,20 @@ class DBHolder(_context: Context) {
                 "$RECORDS_DEST_DATE_NAME = %s, " +
                 "$RECORDS_DESCRIPTION_NAME = %s " +
             "where $RECORDS_ID_NAME = %s"
+
+        private const val RENAME_CLIENT_QUERY =
+            "update $CLIENTS_TABLE_NAME set " +
+                "$CLIENTS_FIRST_NAME_NAME = '%s', " +
+                "$CLIENTS_LAST_NAME_NAME = '%s' " +
+            "where $CLIENTS_ID_NAME = %s"
+
+        private const val REMOVE_CLIENT_QUERY =
+            "delete from $CLIENTS_TABLE_NAME " +
+            "where $CLIENTS_ID_NAME = %s"
+
+        private const val CLEANUP_RECORDS_QUERY =
+            "delete from $RECORDS_TABLE_NAME " +
+            "where $RECORDS_CLIENT_ID_NAME = %s"
     }
 
     private val _recordsHelper = OpenHelper(_context, RECORDS_TABLE_NAME, CREATE_DEBTS_QUERY)
@@ -188,7 +201,7 @@ class DBHolder(_context: Context) {
     private fun getRecord(cursor: Cursor): Record {
         val client = getClientInfo(cursor.getInt(cursor.getColumnIndex(RECORDS_CLIENT_ID_NAME)))
         with(cursor) {
-            var e = Record(
+            return Record(
                 sum = getDouble(getColumnIndex(RECORDS_SUM_NAME)),
                 clientFirstName = client.firstName,
                 clientLastName = client.lastName,
@@ -197,7 +210,6 @@ class DBHolder(_context: Context) {
                 destDate = getString(getColumnIndex(RECORDS_DEST_DATE_NAME)),
                 description = getString(getColumnIndex(RECORDS_DESCRIPTION_NAME))
             )
-            return e
         }
     }
 
@@ -243,8 +255,12 @@ class DBHolder(_context: Context) {
 
     fun getClientsInfo(): Map<Client, List<Record>> =
         try {
-            getAllDebtsRecords().groupBy { r -> r.clientString }
-                .mapKeys { e -> Client(e.key.split(" ")[0], e.key.split(" ")[1]) }
+            val map = getAllDebtsRecords().groupBy { r -> r.clientString }
+                .mapKeys { e -> Client(e.key.split(" ")[0], e.key.split(" ")[1]) }.toMutableMap()
+            for (c in getClients())
+                if (!map.containsKey(c))
+                    map[c] = emptyList()
+            map
         }
         catch (e: Exception) {
             emptyMap()
@@ -252,4 +268,34 @@ class DBHolder(_context: Context) {
 
     fun getClientsRecords(client: Client): List<Record> =
         getAllDebtsRecords().filter { r -> r.clientString == client.fullNameString }
+
+    fun renameClient(old: Client, new: Client): Boolean =
+        try {
+            val clientId = getClientsId(old)
+            val query = String.format(RENAME_CLIENT_QUERY, new.firstName, new.lastName, clientId)
+            _clientsHelper.writableDatabase.execSQL(query)
+            clientId != null
+        }
+        catch (e: Exception) {false}
+
+    fun cleanupRecords(client: Client): Boolean =
+        try {
+            val id = getClientsId(client)
+            val query = String.format(CLEANUP_RECORDS_QUERY, id)
+            _recordsHelper.writableDatabase.execSQL(query)
+            id != null
+        }
+        catch (e: Exception) {
+            false
+        }
+
+    fun removeClient(client: Client): Boolean =
+        try {
+            val id = getClientsId(client)
+            val cleanup = cleanupRecords(client)
+            val query = String.format(REMOVE_CLIENT_QUERY, id)
+            _clientsHelper.writableDatabase.execSQL(query)
+            id != null && cleanup
+        }
+        catch (e: Exception) {false}
 }

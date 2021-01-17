@@ -66,4 +66,19 @@
     <string name="clRec_tvEmptyList">No records yet</string>
     <string name="debtItem_PAY_noClient">Pay</string>
     <string name="debtItem_GET_noClient">Get</string>
+    <string name="confirmCI_bYes">Yes</string>
+    <string name="confirmCI_bNo">No</string>
+    <string name="confirmCI_cleanup_content">Are you sure you want to cleanup all the debt entries for this client?</string>
+    <string name="confirmCI_remove_content">Are you sure you want to remove this client and all of their debt entries?</string>
+    <string name="confirmCI_title">Alert</string>
+    <string name="ve_renaming_firstNameIsNull">Please, specify new first name</string>
+    <string name="ve_renaming_lastNameIsNull">Please, specify new last name</string>
+    <string name="ve_renaming_spaces">Client\'s first name or last name shouldn\'t contain spaces</string>
+    <string name="ve_renaming_clientExists">Such name is already occupied. May be your client already exists?</string>
+    <string name="ve_renaming_unknownError">Unknown error has occurred. Client wasn\'t renamed</string>
+    <string name="renameClient_title">Rename client</string>
+    <string name="clMessage_clientRenamed">Client renamed successfully</string>
+    <string name="clMessage_clientRemoved">Client removed successfully</string>
+    <string name="clMessage_cleanup">"Client's debt entries removed successfully "</string>
+    <string name="clMessage_unknownError">Unknown error has occurred. Data wasn\'t changed</string>
 </resources>

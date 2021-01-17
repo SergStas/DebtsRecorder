@@ -16,6 +16,7 @@ import com.sergstas.debtsrecorder.feature.newrecord.data.NewRecordDaoImpl
 import com.sergstas.debtsrecorder.feature.newrecord.enums.ValidationError
 import com.sergstas.debtsrecorder.feature.newrecord.presentation.NewRecordPresenter
 import com.sergstas.debtsrecorder.feature.newrecord.presentation.NewRecordView
+import com.sergstas.debtsrecorder.feature.newrecord.ui.dialogs.EmptyDescriptionDialog
 import kotlinx.android.synthetic.main.activity_new_record.*
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
