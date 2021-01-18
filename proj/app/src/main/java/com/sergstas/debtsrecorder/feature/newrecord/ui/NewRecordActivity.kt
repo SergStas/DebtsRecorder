@@ -116,6 +116,7 @@ class NewRecordActivity : MvpAppCompatActivity(), NewRecordView {
     }
 
     override fun close() {
+        setResult(Activity.RESULT_OK)
         finish()
     }
 

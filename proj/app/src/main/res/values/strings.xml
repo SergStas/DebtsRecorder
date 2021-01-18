@@ -81,4 +81,6 @@
     <string name="clMessage_clientRemoved">Client removed successfully</string>
     <string name="clMessage_cleanup">"Client's debt entries removed successfully "</string>
     <string name="clMessage_unknownError">Unknown error has occurred. Data wasn\'t changed</string>
+    <string name="mainMessage_recordCreated">Debt entry created successfully</string>
+    <string name="main_tvMessage_ph">You have %s debtors and %s debts</string>
 </resources>
