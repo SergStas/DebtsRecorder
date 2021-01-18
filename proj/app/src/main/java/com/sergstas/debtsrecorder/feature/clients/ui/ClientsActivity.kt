@@ -19,6 +19,7 @@ import com.sergstas.debtsrecorder.feature.clients.presentation.ClientsView
 import com.sergstas.debtsrecorder.feature.clientrecords.ui.ClientRecordsActivity
 import com.sergstas.debtsrecorder.feature.clients.enums.ClientsMessage
 import com.sergstas.debtsrecorder.feature.clients.ui.dialogs.ClientsConfirmDialogActivity
+import com.sergstas.debtsrecorder.feature.newclient.ui.NewClientActivity
 import com.sergstas.debtsrecorder.feature.renameclient.ui.RenamingActivity
 import kotlinx.android.synthetic.main.activity_clients.*
 import kotlinx.android.synthetic.main.fragment_clients_item.*
@@ -31,6 +32,7 @@ class ClientsActivity : MvpAppCompatActivity(), ClientsView {
         private const val RENAME_CLIENT_REQUEST_CODE = 0
         private const val CONFIRM_CLEANUP_REQUEST_CODE = 1
         private const val CONFIRM_REMOVE_REQUEST_CODE = 2
+        private const val NEW_CLIENT_REQUEST_CODE = 3
     }
 
     private lateinit var _adapter: ClientsAdapter
@@ -51,6 +53,13 @@ class ClientsActivity : MvpAppCompatActivity(), ClientsView {
     }
 
     private fun setView() {
+        clients_bNewClient.setOnClickListener {
+            startActivityForResult(
+                Intent(this, NewClientActivity::class.java),
+                NEW_CLIENT_REQUEST_CODE
+            )
+        }
+
         with(clients_rv) {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = ClientsAdapter{v -> showPopup(v)}.also{ _adapter = it }
@@ -74,6 +83,7 @@ class ClientsActivity : MvpAppCompatActivity(), ClientsView {
             ClientsMessage.CLIENT_RENAMED -> R.string.clMessage_clientRenamed
             ClientsMessage.CLIENT_REMOVED -> R.string.clMessage_clientRemoved
             ClientsMessage.HISTORY_CLEANED -> R.string.clMessage_cleanup
+            ClientsMessage.CLIENT_CREATED -> R.string.clMessage_clientCreated
             ClientsMessage.UNKNOWN_ERROR -> R.string.clMessage_unknownError
         })
 
@@ -105,6 +115,7 @@ class ClientsActivity : MvpAppCompatActivity(), ClientsView {
                 RENAME_CLIENT_REQUEST_CODE -> showMessage(ClientsMessage.CLIENT_RENAMED)
                 CONFIRM_CLEANUP_REQUEST_CODE -> _presenter.cleanupClientsHistory(data!!.getStringExtra(ClientsConfirmDialogActivity.CLIENT_ARG_KEY)!!)
                 CONFIRM_REMOVE_REQUEST_CODE -> _presenter.removeClient(data!!.getStringExtra(ClientsConfirmDialogActivity.CLIENT_ARG_KEY)!!)
+                NEW_CLIENT_REQUEST_CODE -> showMessage(ClientsMessage.CLIENT_CREATED)
             }
     }
 

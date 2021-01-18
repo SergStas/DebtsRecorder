@@ -83,4 +83,6 @@
     <string name="clMessage_unknownError">Unknown error has occurred. Data wasn\'t changed</string>
     <string name="mainMessage_recordCreated">Debt entry created successfully</string>
     <string name="main_tvMessage_ph">You have %s debtors and %s debts</string>
+    <string name="clients_bNewClient">New client</string>
+    <string name="clMessage_clientCreated">Client created successfully</string>
 </resources>

@@ -4,5 +4,6 @@ enum class ClientsMessage {
     CLIENT_RENAMED,
     HISTORY_CLEANED,
     CLIENT_REMOVED,
-    UNKNOWN_ERROR
+    UNKNOWN_ERROR,
+    CLIENT_CREATED
 }
