@@ -1,4 +1,4 @@
-package com.sergstas.debtsrecorder.feature.clientrecords.adapters
+package com.sergstas.debtsrecorder.feature.debts.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -12,20 +12,7 @@ import com.sergstas.debtsrecorder.domain.entity.Record
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.fragment_debt_item.*
 
-class ClientRecordsAdapter: ListAdapter<Record, ClientRecordsAdapter.ViewHolder>(
-    object : DiffUtil.ItemCallback<Record>() {
-        override fun areItemsTheSame(oldItem: Record, newItem: Record): Boolean =
-            oldItem == newItem
-
-        override fun areContentsTheSame(oldItem: Record, newItem: Record): Boolean =
-            oldItem == newItem
-    }) {
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-        ViewHolder(
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.fragment_debt_item, parent, false)
-        )
+class ClientRecordsAdapter(private val _onClick: (View) -> Unit): RecordsAdapter() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         setItemView(getItem(position), holder)
@@ -38,6 +25,10 @@ class ClientRecordsAdapter: ListAdapter<Record, ClientRecordsAdapter.ViewHolder>
                 getString(if (record.doesClientPay) R.string.debtItem_GET_noClient else R.string.debtItem_PAY_noClient))
             holder.debtItem_tvClient.isVisible = false
             holder.debtItem_tvDate.text = record.date
+
+            holder.containerView.setOnClickListener {
+                _onClick(holder.containerView)
+            }
 
             holder.debtItem_tvDestDate.isVisible = !record.destDate.isNullOrEmpty()
             holder.debtItem_tvDestDate.text =
@@ -52,7 +43,4 @@ class ClientRecordsAdapter: ListAdapter<Record, ClientRecordsAdapter.ViewHolder>
                 else ""
         }
     }
-
-    class ViewHolder(override val containerView: View): RecyclerView.ViewHolder(containerView),
-        LayoutContainer
 }

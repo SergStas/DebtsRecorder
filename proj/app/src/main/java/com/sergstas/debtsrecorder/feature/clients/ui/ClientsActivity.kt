@@ -16,13 +16,13 @@ import com.sergstas.debtsrecorder.feature.clients.adapters.ClientsAdapter
 import com.sergstas.debtsrecorder.feature.clients.data.ClientsDaoImpl
 import com.sergstas.debtsrecorder.feature.clients.presentation.ClientsPresenter
 import com.sergstas.debtsrecorder.feature.clients.presentation.ClientsView
-import com.sergstas.debtsrecorder.feature.clientrecords.ui.ClientRecordsActivity
 import com.sergstas.debtsrecorder.feature.clients.enums.ClientsMessage
 import com.sergstas.debtsrecorder.feature.clients.ui.dialogs.ClientsConfirmDialogActivity
+import com.sergstas.debtsrecorder.feature.debts.enums.DebtsActivityType
+import com.sergstas.debtsrecorder.feature.debts.ui.DebtsActivity
 import com.sergstas.debtsrecorder.feature.newclient.ui.NewClientActivity
 import com.sergstas.debtsrecorder.feature.renameclient.ui.RenamingActivity
 import kotlinx.android.synthetic.main.activity_clients.*
-import kotlinx.android.synthetic.main.fragment_clients_item.*
 import kotlinx.android.synthetic.main.fragment_clients_item.view.*
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
@@ -138,7 +138,7 @@ class ClientsActivity : MvpAppCompatActivity(), ClientsView {
     }
 
     private fun goToClientRecords(name: String) {
-        startActivity(ClientRecordsActivity.getIntent(this, Client(
+        startActivity(DebtsActivity.getIntent(this, DebtsActivityType.CLIENTS_DEBTS, Client(
             name.split(" ")[0],
             name.split(" ")[1]
         )))

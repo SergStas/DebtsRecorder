@@ -2,20 +2,21 @@ package com.sergstas.debtsrecorder.feature.debts.presentation
 
 import android.view.View
 import com.sergstas.debtsrecorder.domain.entity.Record
-import com.sergstas.debtsrecorder.feature.debts.data.DebtsDao
+import com.sergstas.debtsrecorder.feature.debts.data.RecordsDao
+import com.sergstas.debtsrecorder.feature.debts.enums.DebtsActivityType
 import com.sergstas.debtsrecorder.feature.debts.enums.DebtsListMessage
 import kotlinx.coroutines.launch
 import moxy.MvpPresenter
 import moxy.presenterScope
 
-class DebtsPresenter(private val _dao: DebtsDao): MvpPresenter<DebtsListView>() {
+class DebtsPresenter(private val _dao: RecordsDao): MvpPresenter<DebtsListView>() {
     private var _recordsList = emptyList<Record>()
 
     private var _itemToRemove: Record? = null
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        setList()
+        viewState.setView()
     }
 
     fun setList() {

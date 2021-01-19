@@ -1,10 +1,9 @@
 package com.sergstas.debtsrecorder.feature.debts.data
 
 import com.sergstas.debtsrecorder.data.db.DBHolder
-import com.sergstas.debtsrecorder.feature.debts.data.DebtsDao
 import com.sergstas.debtsrecorder.domain.entity.Record
 
-class DebtsDaoImpl(private val _db: DBHolder): DebtsDao {
+class AllRecordsDaoImpl(private val _db: DBHolder): RecordsDao {
 
     override fun getAll(): List<Record> = _db.getAllDebtsRecords()
 

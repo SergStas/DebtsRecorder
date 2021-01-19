@@ -8,6 +8,9 @@ import moxy.viewstate.strategy.*
 
 interface DebtsListView: MvpView {
     @StateStrategyType(AddToEndSingleStrategy::class)
+    fun setView()
+
+    @StateStrategyType(AddToEndSingleStrategy::class)
     fun setList(records: List<Record>)
 
     @StateStrategyType(AddToEndSingleStrategy::class)

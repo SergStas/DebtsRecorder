@@ -8,6 +8,7 @@ import androidx.core.view.isVisible
 import com.sergstas.debtsrecorder.R
 import com.sergstas.debtsrecorder.data.db.DBHolder
 import com.sergstas.debtsrecorder.feature.clients.ui.ClientsActivity
+import com.sergstas.debtsrecorder.feature.debts.enums.DebtsActivityType
 import com.sergstas.debtsrecorder.feature.debts.ui.DebtsActivity
 import com.sergstas.debtsrecorder.feature.main.data.MainDao
 import com.sergstas.debtsrecorder.feature.main.data.MainDaoImpl
@@ -51,7 +52,7 @@ class MainActivity: MvpAppCompatActivity(), MainView {
         }
 
         main_bAllRecords.setOnClickListener {
-            startActivity(Intent(this, DebtsActivity::class.java))
+            startActivity(DebtsActivity.getIntent(this, DebtsActivityType.ALL_DEBTS, null))
         }
 
         main_bClients.setOnClickListener {
