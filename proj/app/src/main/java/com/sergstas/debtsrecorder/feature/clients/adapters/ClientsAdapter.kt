@@ -50,6 +50,8 @@ class ClientsAdapter(private val onClick: (View) -> Unit):
                     R.string.clientItem_tvRecordsCount_ph_empty
                 else if (client.debtsCount == 1)
                     R.string.clientItem_tvRecordsCount_ph_one
+                else if (client.debtsCount in 2..4)
+                    R.string.clientItem_tvRecordsCount_ph_twoThreeFour
                 else
                     R.string.clientItem_tvRecordsCount_ph
             ), client.debtsCount)

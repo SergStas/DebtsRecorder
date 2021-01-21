@@ -1,6 +1,7 @@
 package com.sergstas.debtsrecorder.feature.newrecord.ui
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -23,8 +24,15 @@ import moxy.ktx.moxyPresenter
 
 class NewRecordActivity : MvpAppCompatActivity(), NewRecordView {
     companion object {
+        private const val DEFAULT_CLIENT_KEY = "CLIENT"
+
         private const val DIALOG_REQUEST_CODE = 0
         private const val NEW_CLIENT_REQUEST_CODE = 1
+
+        fun getIntent(context: Context, defaultClient: Client?) =
+            Intent(context, NewRecordActivity::class.java).apply {
+                putExtra(DEFAULT_CLIENT_KEY, defaultClient)
+            }
     }
 
     private val _presenter: NewRecordPresenter by moxyPresenter {
@@ -61,19 +69,25 @@ class NewRecordActivity : MvpAppCompatActivity(), NewRecordView {
             ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, labels)
             .apply { setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item) }
 
-        if (labels.isEmpty()) {
-            newRecord_spin.isVisible = false
-            newRecord_tvNoClient.isVisible = true
-        }
+        if (intent?.getParcelableExtra<Client>(DEFAULT_CLIENT_KEY) != null)
+            with(newRecord_spin) {
+                setSelection(
+                    (adapter as ArrayAdapter<String>)
+                        .getPosition(intent!!.getParcelableExtra<Client>(DEFAULT_CLIENT_KEY)!!.fullNameString)
+                )
+            }
 
-        newRecord_spin.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) { }
+            newRecord_spin.isVisible = labels.isNotEmpty()
+            newRecord_tvNoClient.isVisible = labels.isEmpty()
 
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                _client = parent!!.getItemAtPosition(position) as String
+            newRecord_spin.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onNothingSelected(parent: AdapterView<*>?) { }
+
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                    _client = parent!!.getItemAtPosition(position) as String
+                }
             }
         }
-    }
 
     override fun showLoading(b: Boolean) {
         newRecord_pb.isVisible = b

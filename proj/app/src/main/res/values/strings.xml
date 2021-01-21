@@ -74,15 +74,16 @@
     <string name="ve_renaming_firstNameIsNull">Please, specify new first name</string>
     <string name="ve_renaming_lastNameIsNull">Please, specify new last name</string>
     <string name="ve_renaming_spaces">Client\'s first name or last name shouldn\'t contain spaces</string>
-    <string name="ve_renaming_clientExists">Such name is already occupied. May be your client already exists?</string>
+    <string name="ve_renaming_clientExists">Such name is already occupied</string>
     <string name="ve_renaming_unknownError">Unknown error has occurred. Client wasn\'t renamed</string>
     <string name="renameClient_title">Rename client</string>
     <string name="clMessage_clientRenamed">Client renamed successfully</string>
     <string name="clMessage_clientRemoved">Client removed successfully</string>
-    <string name="clMessage_cleanup">"Client's debt entries removed successfully "</string>
+    <string name="clMessage_cleanup">Client\'s debt entries removed successfully</string>
     <string name="clMessage_unknownError">Unknown error has occurred. Data wasn\'t changed</string>
     <string name="mainMessage_recordCreated">Debt entry created successfully</string>
     <string name="main_tvMessage_ph">You have %s debtors and %s debts</string>
     <string name="clients_bNewClient">New client</string>
     <string name="clMessage_clientCreated">Client created successfully</string>
+    <string name="clientItem_tvRecordsCount_ph_twoThreeFour">%s entries</string>
 </resources>

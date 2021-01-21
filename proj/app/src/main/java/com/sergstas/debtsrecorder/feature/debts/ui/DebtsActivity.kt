@@ -77,7 +77,12 @@ class DebtsActivity : MvpAppCompatActivity(), DebtsListView {
         }
 
         debtList_bAdd.setOnClickListener {
-            startActivity(Intent(this, NewRecordActivity::class.java))
+            startActivity(
+                if (intent!!.getSerializableExtra(TYPE_KEY) == DebtsActivityType.CLIENTS_DEBTS)
+                    NewRecordActivity.getIntent(this, _client)
+                else
+                    Intent(this, NewRecordActivity::class.java)
+            )
         }
     }
 
@@ -146,7 +151,7 @@ class DebtsActivity : MvpAppCompatActivity(), DebtsListView {
 
     private fun extractData(item: View) =
         Record(
-            sum = item.debtItem_tvSum.text.toString().split(" rub")[0].toDouble(),
+            sum = item.debtItem_tvSum.text.toString().split(" ")[0].toDouble(),
             clientFirstName = _client?.firstName ?: item.debtItem_tvClient.text.toString().split(' ')[0],
             clientLastName = _client?.lastName ?: item.debtItem_tvClient.text.toString().split(' ')[1],
             doesClientPay = item.debtItem_tvSum.text.toString().contains(getString(R.string.debtItem_GET_noClient)),

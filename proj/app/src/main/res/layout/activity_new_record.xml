@@ -40,7 +40,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/style_BaseContent">
+        style="@style/style_BaseContent"
+        android:padding="5dp">
 
         <TextView
             android:id="@+id/newRecord_tvClient"
@@ -73,8 +74,7 @@
             android:id="@+id/newRecord_tvNoClient"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/newRecord_spin"
-            app:layout_constraintEnd_toEndOf="@id/newRecord_spin"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/newRecord_tvClient"
             app:layout_constraintBottom_toBottomOf="parent"
             android:text="@string/newRecord_tvNoClients"
